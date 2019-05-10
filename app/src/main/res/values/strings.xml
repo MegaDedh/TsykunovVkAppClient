@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">VkAppClient</string>
+    <string name="splash">Splash</string>
+    <string name="profile_view">Просмотр профиля</string>
+    <string name="profile_edit">Редактирование профиля</string>
+    <string name="logout">Выход</string>
+    <string name="login_enter">Войти</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="remember_password">Значит вспоминайте.\nАккаунт для тестов test/123</string>
+    <string name="password">Пароль</string>
+    <string name="account">Телефон или email</string>
+    <string name="name">Имя:</string>
+    <string name="surname">Фамилия:</string>
+    <string name="birthday">День рождения:</string>
+    <string name="city">Город:</string>
+    <string name="edit_profile_success">Данные профиля успешно обновлены</string>
+    <string name="edit_profile_failure">Не удалось обновить данные профиля</string>
+
+</resources>
