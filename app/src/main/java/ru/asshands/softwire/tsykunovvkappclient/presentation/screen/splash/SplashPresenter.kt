@@ -1,0 +1,22 @@
+package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash
+
+import android.os.Handler
+import com.arellomobile.mvp.InjectViewState
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
+import ru.terrakok.cicerone.Router
+
+class SplashPresenter {
+
+    @InjectViewState
+    class SplashPresenter(private val router: Router) : BasePresenter<SplashView>() {
+
+        override fun onFirstViewAttach() {
+            super.onFirstViewAttach()
+
+            Handler().postDelayed({
+                router.newRootScreen(Screen.ProfileViewScreen("profileID"))
+            }, 2000)
+        }
+    }
+}

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VkAppClient</string>
+    <string name="app_name">TsykunovVkAppClient</string>
     <string name="splash">Splash</string>
     <string name="profile_view">Просмотр профиля</string>
     <string name="profile_edit">Редактирование профиля</string>
