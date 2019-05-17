@@ -33,7 +33,6 @@ class App : Application() {
             modules(presentationModule)
         }
 
-
         INSTANCE = this
         cicerone = Cicerone.create()
     }

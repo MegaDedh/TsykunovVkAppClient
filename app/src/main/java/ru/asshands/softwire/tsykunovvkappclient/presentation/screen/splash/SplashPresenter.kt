@@ -6,7 +6,6 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresente
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.terrakok.cicerone.Router
 
-class SplashPresenter {
 
     @InjectViewState
     class SplashPresenter(private val router: Router) : BasePresenter<SplashView>() {
@@ -15,8 +14,7 @@ class SplashPresenter {
             super.onFirstViewAttach()
 
             Handler().postDelayed({
-                router.newRootScreen(Screen.ProfileViewScreen("profileID"))
+                router.newRootScreen(Screen.LoginScreen())
             }, 2000)
         }
     }
-}

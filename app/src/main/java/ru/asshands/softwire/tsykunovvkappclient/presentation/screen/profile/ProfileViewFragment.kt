@@ -4,21 +4,32 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import kotlinx.android.synthetic.main.fragment_profile_view.*
+import org.koin.core.KoinComponent
+import org.koin.core.get
+import org.koin.core.inject
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginPresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.FeedAdapter
+import ru.terrakok.cicerone.Router
 
 class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_profile_view),
-    ProfileView {
+    ProfileView, KoinComponent {
 
     @InjectPresenter
     lateinit var presenter: ProfileViewPresenter
 
     private val feedAdapter = FeedAdapter()
+
+    @ProvidePresenter
+    fun providePresenter(): ProfileViewPresenter = get()
+
+    private val router by inject<Router>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +48,7 @@ class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_pr
         profileViewToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_profile_edit -> {
-                    App.INSTANCE.router.replaceScreen(Screen.ProfileViewEditScreen())
+                    router.replaceScreen(Screen.ProfileViewEditScreen())
                 }
                 R.id.action_logout -> presenter.logout()
             }
@@ -57,6 +68,6 @@ class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_pr
     }
 
     override fun goToLoginScreen() {
-        App.INSTANCE.router.replaceScreen(Screen.LoginScreen())
+        router.replaceScreen(Screen.LoginScreen())
     }
 }

@@ -4,17 +4,31 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
+import org.koin.core.KoinComponent
+import org.koin.core.get
+import org.koin.core.inject
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginPresenter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginView
+import ru.terrakok.cicerone.Router
+
 class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
-    ProfileEditView {
+    ProfileEditView, KoinComponent {
+
 
     @InjectPresenter
     lateinit var presenter: ProfileEditPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): ProfileEditPresenter = get()
+
+    private val router by inject<Router>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +59,7 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
     }
 
     private fun goToProfileViewScreen(){
-        App.INSTANCE.router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
+        router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
     }
 
     private fun disableUI(){

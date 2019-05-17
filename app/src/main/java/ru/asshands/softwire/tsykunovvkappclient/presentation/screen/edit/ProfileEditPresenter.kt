@@ -4,10 +4,12 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.VkApi
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginView
 
 @InjectViewState
-class ProfileEditPresenter : MvpPresenter<ProfileEditView>() {
+class ProfileEditPresenter : BasePresenter<ProfileEditView>() {
     private val vkServer = VkApi()
 
         fun getProfile(){
