@@ -6,5 +6,4 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed
 interface ProfileView : MvpView {
     fun showProfile(firstName: String, surname: String, birthday: String, city: String)
     fun showFeed(items: List<BaseMessage>)
-    fun goToLoginScreen()
 }

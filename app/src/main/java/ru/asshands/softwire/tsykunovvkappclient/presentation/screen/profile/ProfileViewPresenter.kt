@@ -2,11 +2,14 @@ package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.CatMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.PostMessage
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 @InjectViewState
-class ProfileViewPresenter : MvpPresenter<ProfileView>() {
+class ProfileViewPresenter @Inject constructor(private val router: Router) : MvpPresenter<ProfileView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -42,6 +45,12 @@ class ProfileViewPresenter : MvpPresenter<ProfileView>() {
 
     fun logout() {
         //TODO("Сообщаем серверу что работа с аккаунтом завершена")
-        viewState.goToLoginScreen()
+        router.replaceScreen(Screen.LoginScreen())
+        //viewState.goToLoginScreen()
+    }
+    fun goToEditProfile() {
+        //TODO("Сообщаем серверу что работа с аккаунтом завершена")
+        router.replaceScreen(Screen.ProfileViewEditScreen())
+        //viewState.goToLoginScreen()
     }
 }

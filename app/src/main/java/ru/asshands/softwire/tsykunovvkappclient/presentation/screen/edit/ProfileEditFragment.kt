@@ -5,30 +5,20 @@ import android.view.View
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.R
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
-import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginPresenter
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginView
-import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
-    ProfileEditView, KoinComponent {
+    ProfileEditView {
 
-
+    @Inject
     @InjectPresenter
     lateinit var presenter: ProfileEditPresenter
 
     @ProvidePresenter
-    fun providePresenter(): ProfileEditPresenter = get()
-
-    private val router by inject<Router>()
+    fun providePresenter(): ProfileEditPresenter = presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,13 +44,11 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
 
     private fun initCancelButton() {
         profile_edit_cancel_btn.setOnClickListener {
-            goToProfileViewScreen()
+            presenter.goToProfileViewScreen()
         }
     }
 
-    private fun goToProfileViewScreen(){
-        router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
-    }
+
 
     private fun disableUI(){
         profileEditFirstNameField.isEnabled = false
@@ -92,7 +80,7 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
     override fun profileUpdated() {
         context?.let { Toast.makeText(it, R.string.edit_profile_success, Toast.LENGTH_LONG).show() }
         enableUI()
-        goToProfileViewScreen()
+        presenter.goToProfileViewScreen()
 }
 
     override fun profileNotUpdated() {

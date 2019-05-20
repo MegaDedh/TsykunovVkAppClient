@@ -4,9 +4,10 @@ import com.arellomobile.mvp.InjectViewState
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter(private val router: Router) : BasePresenter<MainView>() {
+class MainPresenter @Inject constructor (private val router: Router) : BasePresenter<MainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

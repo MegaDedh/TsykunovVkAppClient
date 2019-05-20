@@ -1,46 +1,53 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.main
 
-
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
-import ru.asshands.softwire.tsykunovvkappclient.App
+import ru.asshands.softwire.tsykunovvkappclient.presentation.moxy.MvpAppCompatActivity
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Navigator
-import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), MainView, KoinComponent {
+class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainView {
 
+    @Inject
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MainPresenter = get()
+    fun providePresenter(): MainPresenter = presenter
 
-    private val navigatorHolder by inject<NavigatorHolder>()
-    private val router by inject<Router>()
+    @Inject
+    lateinit var supportFragmentInjectorImpl: DispatchingAndroidInjector<Fragment>
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjectorImpl
+
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
+
+    private val navigator: SupportAppNavigator by lazy {
+        Navigator(this, supportFragmentManager, R.id.content)
+    }
 
 
-    private lateinit var navigator: SupportAppNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigator = Navigator(this, supportFragmentManager, R.id.content)
-
+//        navigator = Navigator(this, supportFragmentManager, R.id.content)
         //App.INSTANCE.router.newRootScreen(Screen.ProfileViewScreen())
      //   App.INSTANCE.router.newRootScreen(Screen.SplashScreen())
-        router.newRootScreen(Screen.SplashScreen())
+  //      router.newRootScreen(Screen.SplashScreen())
     }
 
     override fun onResume() {

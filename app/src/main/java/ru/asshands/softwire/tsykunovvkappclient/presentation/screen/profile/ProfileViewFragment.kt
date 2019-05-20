@@ -5,31 +5,24 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
-import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import kotlinx.android.synthetic.main.fragment_profile_view.*
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginPresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.FeedAdapter
-import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_profile_view),
-    ProfileView, KoinComponent {
+    ProfileView {
 
+    @Inject
     @InjectPresenter
     lateinit var presenter: ProfileViewPresenter
 
     private val feedAdapter = FeedAdapter()
 
     @ProvidePresenter
-    fun providePresenter(): ProfileViewPresenter = get()
-
-    private val router by inject<Router>()
+    fun providePresenter(): ProfileViewPresenter = presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,9 +40,7 @@ class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_pr
         profileViewToolbar.inflateMenu(R.menu.menu_profile_view)
         profileViewToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.action_profile_edit -> {
-                    router.replaceScreen(Screen.ProfileViewEditScreen())
-                }
+                R.id.action_profile_edit -> presenter.goToEditProfile()
                 R.id.action_logout -> presenter.logout()
             }
             true
@@ -67,7 +58,4 @@ class ProfileViewFragment (profileId: String): BaseFragment(R.layout.fragment_pr
         feedAdapter.setItems(items)
     }
 
-    override fun goToLoginScreen() {
-        router.replaceScreen(Screen.LoginScreen())
-    }
 }

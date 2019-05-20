@@ -5,11 +5,15 @@ import com.arellomobile.mvp.MvpPresenter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.VkApi
+import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginView
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 @InjectViewState
-class ProfileEditPresenter : BasePresenter<ProfileEditView>() {
+class ProfileEditPresenter @Inject constructor (private val router: Router) : BasePresenter<ProfileEditView>() {
     private val vkServer = VkApi()
 
         fun getProfile(){
@@ -32,4 +36,7 @@ class ProfileEditPresenter : BasePresenter<ProfileEditView>() {
                 }
             }
         }
+    fun goToProfileViewScreen() {
+        router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
+    }
 }

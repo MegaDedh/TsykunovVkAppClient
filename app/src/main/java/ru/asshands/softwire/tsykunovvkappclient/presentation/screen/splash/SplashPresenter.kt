@@ -5,16 +5,18 @@ import com.arellomobile.mvp.InjectViewState
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
+
+@InjectViewState
 
 
-    @InjectViewState
-    class SplashPresenter(private val router: Router) : BasePresenter<SplashView>() {
+class SplashPresenter @Inject constructor(private val router: Router) : BasePresenter<SplashView>() {
 
-        override fun onFirstViewAttach() {
-            super.onFirstViewAttach()
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
 
-            Handler().postDelayed({
-                router.newRootScreen(Screen.LoginScreen())
-            }, 2000)
-        }
+        Handler().postDelayed({
+            router.newRootScreen(Screen.LoginScreen())
+        }, 2000)
     }
+}
