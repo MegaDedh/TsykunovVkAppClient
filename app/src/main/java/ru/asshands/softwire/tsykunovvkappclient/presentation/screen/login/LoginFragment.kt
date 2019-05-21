@@ -16,7 +16,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
     @Inject
     @InjectPresenter
     lateinit var presenter: LoginPresenter
-    lateinit var forgotPasswordDialog: AlertDialog
+    private lateinit var forgotPasswordDialog: AlertDialog
 
     @ProvidePresenter
     fun providePresenter(): LoginPresenter = presenter
@@ -46,7 +46,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
 
     override fun showForgotPasswordDialog(title: String, message: String) {
         context?.let {
-            forgotPasswordDialog = AlertDialog.Builder(it)
+
+             forgotPasswordDialog = AlertDialog.Builder(it)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("Okay") { _, _ -> }

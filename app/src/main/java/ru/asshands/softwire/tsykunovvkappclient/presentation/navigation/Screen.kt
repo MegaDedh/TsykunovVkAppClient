@@ -14,7 +14,7 @@ sealed class Screen(fragment: Fragment) : BaseScreen(fragment) {
             profileId
         )
     )
-    class ProfileViewEditScreen : Screen(ProfileEditFragment())
+    class ProfileEditScreen : Screen(ProfileEditFragment())
     class LoginScreen : Screen(LoginFragment())
 }
 

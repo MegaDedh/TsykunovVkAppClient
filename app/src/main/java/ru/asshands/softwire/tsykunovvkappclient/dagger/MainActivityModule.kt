@@ -10,15 +10,19 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash.Splas
 @Module
 interface MainActivityModule {
 
+    @FragmentScope
     @ContributesAndroidInjector
     fun provideSplashFragment(): SplashFragment
 
+    @FragmentScope
     @ContributesAndroidInjector
     fun provideLoginFragment(): LoginFragment
 
+    @FragmentScope
     @ContributesAndroidInjector
     fun provideProfileViewFragment(): ProfileViewFragment
 
+    @FragmentScope
     @ContributesAndroidInjector
     fun provideProfileEdirFragment(): ProfileEditFragment
 
