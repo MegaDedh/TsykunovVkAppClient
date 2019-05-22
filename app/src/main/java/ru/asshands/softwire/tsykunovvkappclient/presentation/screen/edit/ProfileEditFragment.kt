@@ -8,6 +8,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import javax.inject.Inject
 
 class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
@@ -70,11 +71,11 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
         profile_edit_progressBar.visibility = View.GONE
     }
 
-    override fun showEditProfile(firstName: String, surname: String, birthday: String, city: String) {
-        profileEditFirstNameField.setText(firstName)
-        profileEditSurnameField.setText(surname)
-        profileEditBirthdayField.setText(birthday)
-        profileEditCityField.setText(city)
+    override fun showEditProfile(data: ProfileData) {
+        profileEditFirstNameField.setText(data.firstName)
+        profileEditSurnameField.setText(data.surname)
+        profileEditBirthdayField.setText(data.birthday)
+        profileEditCityField.setText(data.city)
     }
 
     override fun profileUpdated() {

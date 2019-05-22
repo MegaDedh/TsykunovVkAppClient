@@ -24,14 +24,7 @@ class ProfileViewPresenter @Inject constructor(
     }
 
     private fun getProfileData(){
-        // Сделать так:
-        // viewState.showProfile(profileRepository.getProfile())
-        val firstName = "Alexey"
-        val surname = "Tsykunov"
-        val birthday = "21.05.1988"
-        val city = "Tomsk"
-        viewState.showProfile(firstName, surname, birthday, city)
-
+        viewState.showProfile(profileRepository.getProfile())
     }
 
     private fun getFeedData() {
@@ -41,11 +34,9 @@ class ProfileViewPresenter @Inject constructor(
     fun logout() {
         //TODO("Сообщаем серверу что работа с аккаунтом завершена")
         router.replaceScreen(Screen.LoginScreen())
-        //viewState.goToLoginScreen()
     }
     fun goToEditProfile() {
         //TODO("Сообщаем серверу что работа с аккаунтом завершена")
-        router.replaceScreen(Screen.ProfileEditScreen())
-        //viewState.goToLoginScreen()
+        router.navigateTo(Screen.ProfileEditScreen())
     }
 }

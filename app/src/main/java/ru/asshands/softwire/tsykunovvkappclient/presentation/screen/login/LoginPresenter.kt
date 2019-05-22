@@ -15,8 +15,7 @@ import javax.inject.Inject
     fun login(login: String, password: String) {
         // TODO отправляем запрос на сервер, он должен вернуть profileID
         if (login == "test" && password == "123"){
-            ProfileData.ProfileID = "profileID"
-            router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
+            router.replaceScreen(Screen.ProfileViewScreen())
     }
         else{
             viewState.accessDenied()

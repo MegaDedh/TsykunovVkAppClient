@@ -1,7 +1,6 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.common
 
-class ProfileData {
-    companion object{
-        lateinit var ProfileID: String
-    }
-}
+data class ProfileData (val firstName: String,
+                        val surname: String,
+                        val birthday: String,
+                        val city: String)

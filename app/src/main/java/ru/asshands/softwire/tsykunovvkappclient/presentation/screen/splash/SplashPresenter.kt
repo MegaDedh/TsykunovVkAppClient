@@ -22,8 +22,8 @@ class SplashPresenter @Inject constructor(
         Handler().postDelayed({
             router.newRootScreen(
                 if (sessionRepository.isAuth()) {
-                    ProfileData.ProfileID="ProfileID"
-                    Screen.ProfileViewScreen(ProfileData.ProfileID)
+                    //ProfileData.ProfileID="ProfileID"
+                    Screen.ProfileViewScreen()
                 } else {
                     Screen.LoginScreen()
                 }

@@ -17,8 +17,9 @@ class PostRepositoryImpl @Inject constructor() : PostRepository {
         } else {
             PostMessage(
                 it,
-                "Message".repeat(30),
-                "https://picsum.photos/id/$it/200/300"
+                "Message".repeat(10),
+              //  "https://picsum.photos/id/$it/200/300"
+                "https://loremflickr.com/300/200/nature?random=$it"
             )
         }
     }

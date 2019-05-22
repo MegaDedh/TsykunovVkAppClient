@@ -9,11 +9,7 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 sealed class Screen(fragment: Fragment) : BaseScreen(fragment) {
     class SplashScreen : Screen(SplashFragment())
-    class ProfileViewScreen(profileId: String) : Screen(
-        ProfileViewFragment(
-            profileId
-        )
-    )
+    class ProfileViewScreen : Screen(ProfileViewFragment())
     class ProfileEditScreen : Screen(ProfileEditFragment())
     class LoginScreen : Screen(LoginFragment())
 }

@@ -4,6 +4,8 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
+import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.VkApi
@@ -13,16 +15,18 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class ProfileEditPresenter @Inject constructor (private val router: Router) : BasePresenter<ProfileEditView>() {
+class ProfileEditPresenter @Inject constructor(
+    private val profileRepository: ProfileRepository,
+    private val router: Router) : MvpPresenter<ProfileEditView>() {
     private val vkServer = VkApi()
 
         fun getProfile(){
+            viewState.showEditProfile(profileRepository.getProfile())
             // TODO сделать DataClass c данными профиля и вынести работу в vkServer
-            val firstName = "Alexey"
-            val surname = "Tsykunov"
-            val birthday = "21.05.1988"
-            val city = "Tomsk"
-            viewState.showEditProfile(firstName, surname, birthday, city)
+//            val firstName = "Alexey"
+//            val surname = "Tsykunov"
+//            val birthday = "21.05.1988"
+//            val city = "Tomsk"
         }
 
         fun saveChanges (firstName: String, surname: String, birthday: String, city: String){
@@ -37,6 +41,6 @@ class ProfileEditPresenter @Inject constructor (private val router: Router) : Ba
             }
         }
     fun goToProfileViewScreen() {
-        router.replaceScreen(Screen.ProfileViewScreen(ProfileData.ProfileID))
+        router.replaceScreen(Screen.ProfileViewScreen())
     }
 }
