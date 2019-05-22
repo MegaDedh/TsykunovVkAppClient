@@ -32,6 +32,10 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
         initFeed()
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
     private fun initFeed() {
         profileViewFeed.isNestedScrollingEnabled = false
         profileViewFeed.layoutManager = LinearLayoutManager(context)

@@ -23,6 +23,8 @@ class ProfileViewPresenter @Inject constructor(
         getFeedData()
     }
 
+
+
     private fun getProfileData(){
         viewState.showProfile(profileRepository.getProfile())
     }

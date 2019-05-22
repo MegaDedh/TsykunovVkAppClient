@@ -22,11 +22,6 @@ class ProfileEditPresenter @Inject constructor(
 
         fun getProfile(){
             viewState.showEditProfile(profileRepository.getProfile())
-            // TODO сделать DataClass c данными профиля и вынести работу в vkServer
-//            val firstName = "Alexey"
-//            val surname = "Tsykunov"
-//            val birthday = "21.05.1988"
-//            val city = "Tomsk"
         }
 
         fun saveChanges (firstName: String, surname: String, birthday: String, city: String){
@@ -34,7 +29,7 @@ class ProfileEditPresenter @Inject constructor(
             doAsync {
                 Thread.sleep(3000)
                 uiThread {
-                    var deliveryStatus = vkServer.setProfileData(firstName, surname, birthday, city)
+                    var deliveryStatus = profileRepository.setProfile(ProfileData(firstName, surname, birthday, city))
                     if (deliveryStatus == 0) viewState.profileUpdated()
                     else viewState.profileNotUpdated()
                 }
