@@ -6,10 +6,13 @@ import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor() : ProfileRepository {
 
-    private var firstName = "Alexey"
-    private var surname = "Tsykunov"
-    private var birthday = "21.05.1988"
-    private var city = "Tomsk"
+    companion object {
+        private var firstName = "Alexey"
+        private var surname = "Tsykunov"
+        private var birthday = "21.05.1988"
+        private var city = "Tomsk"
+    }
+
 
     override fun getProfile(): ProfileData {
         return ProfileData(

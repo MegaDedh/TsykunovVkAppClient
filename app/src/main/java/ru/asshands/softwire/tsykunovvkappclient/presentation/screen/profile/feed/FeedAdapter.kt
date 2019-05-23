@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post_message.view.*
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
+import timber.log.Timber
 import java.lang.IllegalArgumentException
 
 class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,7 +22,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
         POST_MESSAGE -> {
-            Log.d("TAG", "OnCreateViewHolder PostMessage")
+            Timber.d("OnCreateViewHolder PostMessage")
             PostMessageHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_post_message,
@@ -33,7 +34,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         CAT_MESSAGE -> {
-            Log.d("TAG", "OnBindViewHolder CATMessage")
+            Timber.d("OnCreateViewHolder CATMessage")
             CatMessageHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_cat_message,
@@ -55,7 +56,7 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Log.d("TAG", "OnBindViewHolder $position")
+        Timber.d("OnBindViewHolder $position")
         when (holder) {
             is PostMessageHolder -> holder.bind(items[position] as PostMessage)
             is CatMessageHolder -> holder.bind(items[position] as CatMessage)

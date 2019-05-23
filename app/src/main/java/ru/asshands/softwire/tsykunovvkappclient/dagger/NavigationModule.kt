@@ -7,11 +7,11 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import javax.inject.Singleton
 
-@Module
+@Module // классы, , чьи методы “предоставляют зависимости”
 class NavigationModule {
 
     @Singleton
-    @Provides
+    @Provides //@Provide – методы внутри @Module, “говорящие Dagger, как мы хотим сконструировать и предоставить зависимость“
     fun provideCicerone(): Cicerone<Router> = Cicerone.create()
 
     @Singleton

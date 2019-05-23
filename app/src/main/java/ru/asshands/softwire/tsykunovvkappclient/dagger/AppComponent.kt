@@ -7,6 +7,7 @@ import ru.asshands.softwire.tsykunovvkappclient.App
 import javax.inject.Singleton
 
 @Singleton
+//@Component – мост между @Inject и @Module
 @Component(modules = [
     AppModule::class,
     NavigationModule::class,

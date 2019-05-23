@@ -1,5 +1,6 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile
 
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
@@ -8,6 +9,7 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.CatMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.PostMessage
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -18,12 +20,9 @@ class ProfileViewPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
         getProfileData()
         getFeedData()
     }
-
-
 
     private fun getProfileData(){
         viewState.showProfile(profileRepository.getProfile())

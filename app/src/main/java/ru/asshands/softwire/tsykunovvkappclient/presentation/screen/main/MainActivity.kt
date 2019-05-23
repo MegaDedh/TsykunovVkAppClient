@@ -37,28 +37,19 @@ class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainVie
         Navigator(this, supportFragmentManager, R.id.content)
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        navigator = Navigator(this, supportFragmentManager, R.id.content)
-        //App.INSTANCE.router.newRootScreen(Screen.ProfileViewScreen())
-     //   App.INSTANCE.router.newRootScreen(Screen.SplashScreen())
-  //      router.newRootScreen(Screen.SplashScreen())
     }
 
     override fun onResume() {
         super.onResume()
-        //App.INSTANCE.navigatorHolder.setNavigator(navigator)
         navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
         super.onPause()
-        //App.INSTANCE.navigatorHolder.removeNavigator()
         navigatorHolder.removeNavigator()
     }
 }
