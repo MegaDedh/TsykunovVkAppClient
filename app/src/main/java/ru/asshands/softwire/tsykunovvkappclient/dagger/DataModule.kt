@@ -10,7 +10,10 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
 
-@Module
+@Module(includes = [
+    NetworkModule::class,
+    ConverterModule::class
+])
 interface DataModule {
 
     @Reusable
