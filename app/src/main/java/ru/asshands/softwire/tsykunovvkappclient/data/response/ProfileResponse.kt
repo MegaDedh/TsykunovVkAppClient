@@ -3,7 +3,7 @@ package ru.asshands.softwire.tsykunovvkappclient.data.response
 import com.google.gson.annotations.SerializedName
 
 class ProfileResponse(
-    @SerializedName("id") var id: Long,
-    @SerializedName("firstName") var firstName: String,
-    @SerializedName("lastName") var lastName: String
+    @SerializedName("id") val id: Long,
+    @SerializedName("firstName") val firstName: String,
+    @SerializedName("lastName") val lastName: String
 )

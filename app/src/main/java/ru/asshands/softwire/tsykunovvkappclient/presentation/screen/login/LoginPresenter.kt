@@ -17,7 +17,7 @@ import javax.inject.Inject
     private val sessionRepository: SessionRepository,
     private val router: Router) : BasePresenter<LoginView>() {
 
-    fun login(login: String, password: String) {
+    fun login_old(login: String, password: String) {
         // TODO отправляем запрос на сервер, он должен вернуть profileID
         if (login == "test" && password == "123"){
             router.replaceScreen(Screen.ProfileViewScreen())
@@ -33,7 +33,7 @@ import javax.inject.Inject
             context.getString(R.string.remember_password))
     }
 
-    fun loginRx(name: String, password: String) {
+    fun login(name: String, password: String) {
         sessionRepository
             .login(name, password)
             .observeOn(AndroidSchedulers.mainThread())

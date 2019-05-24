@@ -12,7 +12,9 @@ class UserConverter @Inject constructor() : Converter<ProfileResponse, User> {
         t.lastName
     )
 
-    override fun convertFrom(k: User): ProfileResponse {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun convertFrom(k: User): ProfileResponse = ProfileResponse(
+        k.id,
+        k.firstName,
+        k.lastName
+    )
 }
