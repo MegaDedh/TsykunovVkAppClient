@@ -1,4 +1,4 @@
-package ru.asshands.softwire.tsykunovvkappclient.dagger
+package ru.asshands.softwire.tsykunovvkappclient.dagger.module.data
 
 import dagger.Binds
 import dagger.Module
@@ -14,4 +14,9 @@ interface ConverterModule {
     @Reusable
     @Binds
     fun bindUserConverter(instance: UserConverter): Converter<ProfileResponse, User>
+
+    @Reusable
+    @Binds
+    fun bindPostsConverter(instance: UserConverter): Converter<ProfileResponse, User>
+
 }

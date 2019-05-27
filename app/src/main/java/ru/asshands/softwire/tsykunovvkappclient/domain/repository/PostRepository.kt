@@ -1,10 +1,11 @@
 package ru.asshands.softwire.tsykunovvkappclient.domain.repository
 
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
+import io.reactivex.Single
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 
 interface PostRepository {
 
-    fun getAll(): List<BaseMessage>
+    fun getPosts(): Single<List<Post>>
 
-    fun getPost(id: Long): BaseMessage
+    fun getPost(id: Long): Post
 }

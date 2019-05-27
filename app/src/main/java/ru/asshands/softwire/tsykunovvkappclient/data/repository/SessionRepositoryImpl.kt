@@ -16,7 +16,7 @@ class SessionRepositoryImpl @Inject constructor(
 
     override fun login(name: String, password: String): Single<User> = api.login(name, password)
         .subscribeOn(Schedulers.io())
-        .map(userConverter::convertTo)
+        .map(userConverter::convert)
 
     override fun isAuth(): Boolean = true
 

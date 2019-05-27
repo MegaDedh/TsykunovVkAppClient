@@ -29,7 +29,7 @@ class ProfileViewPresenter @Inject constructor(
     }
 
     private fun getFeedData() {
-        viewState.showFeed(postRepository.getAll())
+        //viewState.showFeed(postRepository.getAll())
     }
 
     fun logout() {

@@ -1,4 +1,4 @@
-package ru.asshands.softwire.tsykunovvkappclient.dagger
+package ru.asshands.softwire.tsykunovvkappclient.dagger.module.data
 
 import dagger.Binds
 import dagger.Module

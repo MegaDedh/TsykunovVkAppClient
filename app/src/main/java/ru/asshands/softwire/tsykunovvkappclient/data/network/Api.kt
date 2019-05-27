@@ -1,17 +1,17 @@
 package ru.asshands.softwire.tsykunovvkappclient.data.network
 
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
+import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
 
 interface Api {
 
-    @POST("login/{pass}")
+    @POST("login")
 
-  //  fun login(@Query ("name") name: String, @Query ("password")password: String): Single<ProfileResponse>
-    fun login(@Body name: String, @Path("pass") password: String): Single<ProfileResponse>
+    fun login(name: String, password: String): Single<ProfileResponse>
+
+    @GET("posts")
+    fun getPosts(): Single<List<PostResponse>>
 
 }

@@ -1,7 +1,8 @@
-package ru.asshands.softwire.tsykunovvkappclient.dagger
+package ru.asshands.softwire.tsykunovvkappclient.dagger.module.presentation
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ru.asshands.softwire.tsykunovvkappclient.dagger.ActivityScope
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.main.MainActivity
 
 @Module

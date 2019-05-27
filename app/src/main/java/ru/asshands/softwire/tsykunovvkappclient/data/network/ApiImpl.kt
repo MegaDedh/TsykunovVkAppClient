@@ -6,7 +6,7 @@ import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
 import timber.log.Timber
 import javax.inject.Inject
 
-class ApiImpl: Api {
+/*class ApiImpl: Api {
 
     override fun login(name: String, password: String): Single<ProfileResponse> {
         val response = ProfileResponse(id = 0, firstName = "N/A", lastName = "N/A")
@@ -23,3 +23,4 @@ class ApiImpl: Api {
         }
     }
 }
+*/

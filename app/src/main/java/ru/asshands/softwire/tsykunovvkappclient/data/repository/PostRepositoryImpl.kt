@@ -1,14 +1,30 @@
 package ru.asshands.softwire.tsykunovvkappclient.data.repository
 
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
+import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
+import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.CatMessage
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.PostMessage
 import javax.inject.Inject
 
-class PostRepositoryImpl @Inject constructor() : PostRepository {
+class PostRepositoryImpl @Inject constructor(
+    private val api: Api,
+    private val postsConverter: Converter<List<PostResponse>, List<Post>>
+) : PostRepository {
 
-    override fun getAll(): List<BaseMessage> = (1..100).map {
+    override fun getPosts(): Single<List<Post>> = api.getPosts()
+        .subscribeOn(Schedulers.io())
+        .map(postsConverter::convert)
+
+    override fun getPost(id: Long): Post {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
+
+
+    /*    override fun getAll(): List<BaseMessage> = (1..100).map {
         if (it % 5 == 0) {
             CatMessage(
                 it,
@@ -22,9 +38,6 @@ class PostRepositoryImpl @Inject constructor() : PostRepository {
                 "https://loremflickr.com/300/200/nature?random=$it"
             )
         }
-    }
+    }*/
 
-    override fun getPost(id: Long): BaseMessage {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-}
+
