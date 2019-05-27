@@ -78,14 +78,16 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
     }
 
     override fun showProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        profileProgressBar.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        profileRefreshLayout.isRefreshing = false
+        profileProgressBar.visibility = View.GONE
     }
 
     override fun showErrorFeed() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
+
 }

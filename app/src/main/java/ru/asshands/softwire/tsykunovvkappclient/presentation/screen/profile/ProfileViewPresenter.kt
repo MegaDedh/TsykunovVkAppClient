@@ -42,7 +42,8 @@ class ProfileViewPresenter @Inject constructor(
             }
 
             override fun showData(show: Boolean, data: List<Post>) {
-                viewState.showFeed(data.map { PostMessage(it.id, "asdasd", "asdasd") })
+                viewState.showFeed(data.map { PostMessage(it.id, "Number ${it.id}",
+                    "https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681") })
             }
 
             override fun showErrorMessage(error: Throwable) {

@@ -2,6 +2,7 @@ package ru.asshands.softwire.tsykunovvkappclient.data.repository
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import ru.asshands.softwire.tsykunovvkappclient.dagger.MockQualifier
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
 import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
 import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
@@ -10,7 +11,7 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
-    private val api: Api,
+    @MockQualifier private val api: Api,
     private val postsConverter: Converter<List<PostResponse>, List<Post>>
 ) : PostRepository {
 

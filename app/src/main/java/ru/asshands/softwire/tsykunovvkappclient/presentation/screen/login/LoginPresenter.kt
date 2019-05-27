@@ -10,6 +10,7 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresente
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -17,15 +18,11 @@ import javax.inject.Inject
     private val sessionRepository: SessionRepository,
     private val router: Router) : BasePresenter<LoginView>() {
 
-    fun login_old(login: String, password: String) {
-        // TODO отправляем запрос на сервер, он должен вернуть profileID
-        if (login == "test" && password == "123"){
-            router.replaceScreen(Screen.ProfileViewScreen())
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        login("root", "root")
     }
-        else{
-            viewState.accessDenied()
-        }
-    }
+
 
     fun onClickForgotPasswordBtn (context: Context){
         viewState.showForgotPasswordDialog(
@@ -39,12 +36,22 @@ import javax.inject.Inject
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    Log.d("data", it.toString())
+                    router.newRootScreen(Screen.ProfileViewScreen())
                 },
                 {
-                    Log.d("error", it.message)
+                    Timber.e(it.message.orEmpty())
                 }
             )
             .untilDestroy()
+    }
+
+    fun login_old(login: String, password: String) {
+        // TODO отправляем запрос на сервер, он должен вернуть profileID
+        if (login == "test" && password == "123"){
+            router.replaceScreen(Screen.ProfileViewScreen())
+        }
+        else{
+            viewState.accessDenied()
+        }
     }
 }
