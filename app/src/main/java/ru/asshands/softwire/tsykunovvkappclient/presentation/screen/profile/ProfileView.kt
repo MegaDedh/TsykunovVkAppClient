@@ -7,4 +7,8 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed
 interface ProfileView : MvpView {
     fun showProfile(data: ProfileData)
     fun showFeed(items: List<BaseMessage>)
+    fun showEmptyFeed()
+    fun showProgress()
+    fun hideProgress()
+    fun showErrorFeed()
 }

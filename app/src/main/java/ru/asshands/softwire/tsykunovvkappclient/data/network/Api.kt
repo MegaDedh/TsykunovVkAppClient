@@ -7,11 +7,12 @@ import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
 
 interface Api {
 
+    @FormUrlEncoded
     @POST("login")
+    fun login(@Field("name") name: String, @Field("password") password: String):
+            Single<ProfileResponse>
 
-    fun login(name: String, password: String): Single<ProfileResponse>
-
-    @GET("posts")
-    fun getPosts(): Single<List<PostResponse>>
+    @GET("posts/page/{page}")
+    fun getPosts(@Path("page") page: Int): Single<List<PostResponse>>
 
 }

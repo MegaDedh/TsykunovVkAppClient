@@ -12,7 +12,7 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 
-class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         const val POST_MESSAGE = 1
         const val CAT_MESSAGE = 2
@@ -50,6 +50,9 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Timber.d("OnBindViewHolder $position")
+        if (items.size - position == 5) {
+            onLoadPosts()
+        }
         when (holder) {
             is PostMessageHolder -> holder.bind(items[position] as PostMessage)
             is CatMessageHolder -> holder.bind(items[position] as CatMessage)

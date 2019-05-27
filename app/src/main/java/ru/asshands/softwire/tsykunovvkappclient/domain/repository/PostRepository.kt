@@ -5,7 +5,7 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 
 interface PostRepository {
 
-    fun getPosts(): Single<List<Post>>
+    fun getPosts(page: Int): Single<List<Post>>
 
     fun getPost(id: Long): Post
 }

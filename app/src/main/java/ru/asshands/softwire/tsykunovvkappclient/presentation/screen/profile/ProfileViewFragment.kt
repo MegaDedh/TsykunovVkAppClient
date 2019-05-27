@@ -25,7 +25,9 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
     @InjectPresenter
     lateinit var presenter: ProfileViewPresenter
 
-    private val feedAdapter = FeedAdapter()
+
+
+    private val feedAdapter = FeedAdapter { presenter.loadPosts() }
 
     @ProvidePresenter
     fun providePresenter(): ProfileViewPresenter = presenter
@@ -34,6 +36,8 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
         initFeed()
+
+        profileRefreshLayout.setOnRefreshListener(presenter::refreshPosts)
     }
 
     override fun onStart() {
@@ -69,4 +73,19 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
         feedAdapter.setItems(items)
     }
 
+    override fun showEmptyFeed() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showProgress() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideProgress() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showErrorFeed() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

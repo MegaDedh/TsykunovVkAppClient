@@ -14,7 +14,7 @@ class PostRepositoryImpl @Inject constructor(
     private val postsConverter: Converter<List<PostResponse>, List<Post>>
 ) : PostRepository {
 
-    override fun getPosts(): Single<List<Post>> = api.getPosts()
+    override fun getPosts(page: Int): Single<List<Post>> = api.getPosts(page)
         .subscribeOn(Schedulers.io())
         .map(postsConverter::convert)
 
