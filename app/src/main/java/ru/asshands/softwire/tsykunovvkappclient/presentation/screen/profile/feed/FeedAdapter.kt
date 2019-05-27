@@ -23,18 +23,11 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
         POST_MESSAGE -> {
             Timber.d("OnCreateViewHolder PostMessage")
-            PostMessageHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_post_message,
-                    parent,
-                    false
-                )
-
-            )
-        }
+            PostMessageHolder.createInstance(parent)
+            }
 
         CAT_MESSAGE -> {
-            Timber.d("OnCreateViewHolder CATMessage")
+               Timber.d("OnCreateViewHolder CATMessage")
             CatMessageHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_cat_message,
@@ -69,7 +62,17 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class PostMessageHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class PostMessageHolder(view: View) : RecyclerView.ViewHolder(view) {
+        companion object {
+            fun createInstance(parent: ViewGroup) = PostMessageHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_post_message,
+                    parent,
+                    false
+                )
+            )
+        }
+
         fun bind(data: PostMessage) {
             itemView.itemPostMessage.text = data.message
 
@@ -79,9 +82,9 @@ class FeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class CatMessageHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(data: CatMessage) {
-            (itemView as ImageView).loadImage(data.image)
+        inner class CatMessageHolder(view: View) : RecyclerView.ViewHolder(view) {
+            fun bind(data: CatMessage) {
+                (itemView as ImageView).loadImage(data.image)
+            }
         }
-    }
 }
