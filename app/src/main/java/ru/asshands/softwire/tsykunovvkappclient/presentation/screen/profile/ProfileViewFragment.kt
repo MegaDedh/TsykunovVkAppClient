@@ -9,6 +9,7 @@ import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile_view.*
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.FeedAdapter
@@ -68,6 +69,7 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
         profileViewSurname.text = data.lastName
         profileViewBirthday.text = data.birthday
         profileViewCity.text = data.city
+        profileAvatarView.loadImage(data.avatar)
     }
 
     override fun showFeed(items: List<BaseMessage>) {
