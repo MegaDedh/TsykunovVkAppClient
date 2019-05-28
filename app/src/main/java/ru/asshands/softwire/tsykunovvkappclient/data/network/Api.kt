@@ -15,4 +15,7 @@ interface Api {
     @GET("posts/page/{page}")
     fun getPosts(@Path("page") page: Int): Single<List<PostResponse>>
 
+    @GET("{user_id}/profile")
+    fun getProfile(@Path("user_id") userId: Long): Single<ProfileResponse>
+
 }

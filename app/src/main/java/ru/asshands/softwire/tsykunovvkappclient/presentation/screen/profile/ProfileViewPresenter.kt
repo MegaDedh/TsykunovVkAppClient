@@ -4,10 +4,15 @@ import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
+import ru.asshands.softwire.tsykunovvkappclient.data.converter.UserConverter
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.Paginator
+import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.CatMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.PostMessage
@@ -17,9 +22,10 @@ import javax.inject.Inject
 
 @InjectViewState
 class ProfileViewPresenter @Inject constructor(
+    private val profileConverter: Converter<User, ProfileData>,
     private val postRepository: PostRepository,
     private val profileRepository: ProfileRepository,
-    private val router: Router) : MvpPresenter<ProfileView>() {
+    private val router: Router) : BasePresenter<ProfileView>() {
 
     private val paginator = Paginator(
         {
@@ -68,8 +74,19 @@ class ProfileViewPresenter @Inject constructor(
         getFeedData()
     }
 
-    private fun getProfileData(){
-        viewState.showProfile(profileRepository.getProfile())
+    private fun getProfileData() {
+        //    viewState.showProfile(profileRepository.getProfile())
+        profileRepository.getProfile()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    viewState.showProfile(profileConverter.convert(it))
+                },
+                {
+                    Timber.e(it.message.orEmpty())
+                }
+            )
+            .untilDestroy()
     }
 
     fun loadPosts() {

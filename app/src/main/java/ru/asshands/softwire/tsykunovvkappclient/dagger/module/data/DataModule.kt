@@ -7,10 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import ru.asshands.softwire.tsykunovvkappclient.App
-import ru.asshands.softwire.tsykunovvkappclient.data.datasource.AuthDataSource
-import ru.asshands.softwire.tsykunovvkappclient.data.datasource.AuthDataSourceImpl
-import ru.asshands.softwire.tsykunovvkappclient.data.datasource.SessionDataSource
-import ru.asshands.softwire.tsykunovvkappclient.data.datasource.SessionDataSourceImpl
+import ru.asshands.softwire.tsykunovvkappclient.data.datasource.*
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.PostRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.ProfileRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.SessionRepositoryImpl
@@ -40,6 +37,10 @@ abstract class DataModule {
     @Reusable
     @Binds
     abstract fun bindAuthDataSource(instance: AuthDataSourceImpl): AuthDataSource
+
+    @Reusable
+    @Binds
+    abstract fun bindProfileDataSource(instance: ProfileDataSourceImpl): ProfileDataSource
 
     @Reusable
     @Binds

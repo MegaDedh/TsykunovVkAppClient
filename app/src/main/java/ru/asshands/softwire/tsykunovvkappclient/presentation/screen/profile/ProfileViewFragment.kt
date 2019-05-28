@@ -8,7 +8,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile_view.*
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
+import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.BaseMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.FeedAdapter
 import javax.inject.Inject
@@ -64,7 +65,7 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
   //  override fun showProfile(firstName: String, surname: String, birthday: String, city: String) {
     override fun showProfile(data: ProfileData) {
         profileViewFirstName.text = data.firstName
-        profileViewSurname.text = data.surname
+        profileViewSurname.text = data.lastName
         profileViewBirthday.text = data.birthday
         profileViewCity.text = data.city
     }

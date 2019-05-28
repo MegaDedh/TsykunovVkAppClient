@@ -8,7 +8,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
+import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import javax.inject.Inject
 
 class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
@@ -73,7 +73,7 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
 
     override fun showEditProfile(data: ProfileData) {
         profileEditFirstNameField.setText(data.firstName)
-        profileEditSurnameField.setText(data.surname)
+        profileEditSurnameField.setText(data.lastName)
         profileEditBirthdayField.setText(data.birthday)
         profileEditCityField.setText(data.city)
     }

@@ -10,8 +10,18 @@ class ApiMock @Inject constructor() : Api {
 
     override fun login(name: String, password: String): Single<ProfileResponse> =
         if (name == "root" && password == "root") {
-            val profile = ProfileResponse(1, "root", "rootovich")
+            val profile = ProfileResponse(
+                100200300,
+                "Alexey",
+                "Tsykunov",
+                "MyStatus",
+                "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
+                "21.05.1988",
+                "Томск",
+                "+79627775069"
+            )
             Single.just(profile)
+
         } else {
             Single.error(RuntimeException("User not found"))
         }
@@ -22,4 +32,18 @@ class ApiMock @Inject constructor() : Api {
         Single.just(((20 * page - 20 + 1)..(page * 20)).map { PostResponse(it.toLong()) })
             .delay(2, TimeUnit.SECONDS)
 
+    override fun getProfile(userId: Long): Single<ProfileResponse> {
+        val profile = ProfileResponse(
+            100200300,
+            "Alexey_Mock",
+            "Tsykunov_Mock",
+            "MyMockStatus",
+            "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
+            "21.05.1988_Mock",
+            "Томск_Mock",
+            "+79627777777"
+        )
+        return Single.just(profile)
+
+    }
 }

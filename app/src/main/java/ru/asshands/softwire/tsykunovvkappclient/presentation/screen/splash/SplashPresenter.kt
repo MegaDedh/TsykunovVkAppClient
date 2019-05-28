@@ -5,7 +5,6 @@ import com.arellomobile.mvp.InjectViewState
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

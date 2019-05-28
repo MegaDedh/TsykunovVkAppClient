@@ -32,10 +32,6 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/profileViewFeed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,6 +70,10 @@
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:text="City"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profileViewFeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

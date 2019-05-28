@@ -1,11 +1,11 @@
 package ru.asshands.softwire.tsykunovvkappclient.domain.repository
 
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
+import io.reactivex.Single
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 
 
 interface ProfileRepository {
 
-    fun getProfile(): ProfileData
-    fun setProfile(data: ProfileData): Int
+    fun getProfile(): Single<User>
 
 }

@@ -1,13 +1,11 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login
 
 import android.content.Context
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
-import ru.asshands.softwire.tsykunovvkappclient.presentation.common.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
