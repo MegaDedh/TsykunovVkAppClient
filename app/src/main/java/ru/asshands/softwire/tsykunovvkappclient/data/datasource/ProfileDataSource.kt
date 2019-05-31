@@ -3,17 +3,17 @@ package ru.asshands.softwire.tsykunovvkappclient.data.datasource
 import io.reactivex.Single
 import ru.asshands.softwire.tsykunovvkappclient.dagger.MockQualifier
 import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
-import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
 import javax.inject.Inject
 
 interface ProfileDataSource {
 
-    fun getProfile(): Single<ProfileResponse>
+    fun getProfile(): Single<UserResponse>
 
 }
 
-class ProfileDataSourceImpl @Inject constructor(@MockQualifier private val api: Api) : ProfileDataSource {
+class ProfileDataSourceImpl @Inject constructor(private val api: Api) : ProfileDataSource {
 
-    override fun getProfile(): Single<ProfileResponse> =
+    override fun getProfile(): Single<UserResponse> =
         api.getProfile(100200300)
 }

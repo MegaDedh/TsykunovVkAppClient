@@ -5,6 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.dagger.module.data.DataModule
+import ru.asshands.softwire.tsykunovvkappclient.dagger.module.data.NetworkModule
 import ru.asshands.softwire.tsykunovvkappclient.dagger.module.presentation.PresentationModule
 import javax.inject.Singleton
 
@@ -16,6 +17,7 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     DataModule::class,
     PresentationModule::class
+
 ])
 interface AppComponent: AndroidInjector<App> {
 

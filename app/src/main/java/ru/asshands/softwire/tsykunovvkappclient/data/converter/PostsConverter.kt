@@ -1,6 +1,6 @@
 package ru.asshands.softwire.tsykunovvkappclient.data.converter
 
-import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import javax.inject.Inject
 

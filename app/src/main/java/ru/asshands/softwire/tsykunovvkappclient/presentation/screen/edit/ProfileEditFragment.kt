@@ -74,8 +74,8 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
     override fun showEditProfile(data: ProfileData) {
         profileEditFirstNameField.setText(data.firstName)
         profileEditSurnameField.setText(data.lastName)
-        profileEditBirthdayField.setText(data.birthday)
-        profileEditCityField.setText(data.city)
+     //   profileEditBirthdayField.setText(data.birthday)
+     //   profileEditCityField.setText(data.city)
     }
 
     override fun profileUpdated() {

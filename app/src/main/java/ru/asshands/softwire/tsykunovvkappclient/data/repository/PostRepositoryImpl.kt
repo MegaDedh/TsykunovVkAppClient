@@ -3,20 +3,22 @@ package ru.asshands.softwire.tsykunovvkappclient.data.repository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import ru.asshands.softwire.tsykunovvkappclient.dagger.MockQualifier
+import ru.asshands.softwire.tsykunovvkappclient.data.converter.BaseResponseTransformer
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
 import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
-import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
-    @MockQualifier private val api: Api,
+    private val api: Api,
     private val postsConverter: Converter<List<PostResponse>, List<Post>>
 ) : PostRepository {
 
     override fun getPosts(page: Int): Single<List<Post>> = api.getPosts(page)
         .subscribeOn(Schedulers.io())
+        .compose(BaseResponseTransformer())
         .map(postsConverter::convert)
 
     override fun getPost(id: Long): Post {

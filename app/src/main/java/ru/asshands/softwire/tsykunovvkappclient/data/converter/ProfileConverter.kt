@@ -9,12 +9,9 @@ class ProfileConverter @Inject constructor() : Converter<User, ProfileData> {
     override fun convert(t: User): ProfileData =
         ProfileData(
             t.id,
+            t.phone,
             t.firstName,
             t.lastName,
-            t.status,
-            t.avatar,
-            t.birthday,
-            t.city,
-            t.phone
+            t.avatar
         )
 }

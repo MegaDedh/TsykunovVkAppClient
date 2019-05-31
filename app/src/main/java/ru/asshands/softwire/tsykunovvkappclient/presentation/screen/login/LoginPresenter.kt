@@ -34,6 +34,7 @@ import javax.inject.Inject
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    sessionRepository.saveToken(it)
                     router.newRootScreen(Screen.ProfileViewScreen())
                 },
                 {

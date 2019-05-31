@@ -4,14 +4,14 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
 import ru.asshands.softwire.tsykunovvkappclient.data.datasource.ProfileDataSource
-import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
     private val profileDataSource: ProfileDataSource,
-    private val userConverter: Converter<ProfileResponse, User>
+    private val userConverter: Converter<UserResponse, User>
 ) : ProfileRepository {
 
 /*    companion object {

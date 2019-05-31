@@ -14,6 +14,7 @@ import ru.asshands.softwire.tsykunovvkappclient.data.repository.SessionRepositor
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
+import javax.inject.Singleton
 
 @Module(
     includes = [
@@ -28,33 +29,33 @@ abstract class DataModule {
     companion object {
 
         @JvmStatic
-        @Reusable
+        @Singleton
         @Provides
         fun provideSharedPreferences(app: App): SharedPreferences =
             app.getSharedPreferences("CommonSharedPreferences", Context.MODE_PRIVATE)
     }
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindAuthDataSource(instance: AuthDataSourceImpl): AuthDataSource
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindProfileDataSource(instance: ProfileDataSourceImpl): ProfileDataSource
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindSessionRepository(instance: SessionRepositoryImpl): SessionRepository
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindSessionDataSource(instance: SessionDataSourceImpl): SessionDataSource
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindPostRepository(instance: PostRepositoryImpl): PostRepository
 
-    @Reusable
+    @Singleton
     @Binds
     abstract fun bindProfileRepository(instance: ProfileRepositoryImpl): ProfileRepository
 

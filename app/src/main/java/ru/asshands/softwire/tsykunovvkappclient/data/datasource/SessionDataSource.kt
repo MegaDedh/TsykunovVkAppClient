@@ -1,9 +1,6 @@
 package ru.asshands.softwire.tsykunovvkappclient.data.datasource
 
 import android.content.SharedPreferences
-import io.reactivex.Single
-import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
-import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
 import javax.inject.Inject
 
 interface SessionDataSource {

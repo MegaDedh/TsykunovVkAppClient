@@ -5,7 +5,14 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 
 interface SessionRepository {
 
-    fun login(name: String, password: String): Single<User>
+    fun login(name: String, password: String): Single<String>
+
+    fun logout()
+
+    fun saveToken(token: String)
+
+    fun getToken(): String
+
     fun isAuth(): Boolean
 
 }

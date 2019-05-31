@@ -1,16 +1,17 @@
+/*
 package ru.asshands.softwire.tsykunovvkappclient.data.network
 
 import io.reactivex.Single
-import ru.asshands.softwire.tsykunovvkappclient.data.response.PostResponse
-import ru.asshands.softwire.tsykunovvkappclient.data.response.ProfileResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
+import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ApiMock @Inject constructor() : Api {
 
-    override fun login(name: String, password: String): Single<ProfileResponse> =
+    override fun login(name: String, password: String): Single<UserResponse> =
         if (name == "root" && password == "root") {
-            val profile = ProfileResponse(
+            val profile = UserResponse(
                 100200300,
                 "Alexey",
                 "Tsykunov",
@@ -32,18 +33,19 @@ class ApiMock @Inject constructor() : Api {
         Single.just(((20 * page - 20 + 1)..(page * 20)).map { PostResponse(it.toLong()) })
             .delay(2, TimeUnit.SECONDS)
 
-    override fun getProfile(userId: Long): Single<ProfileResponse> {
-        val profile = ProfileResponse(
+    override fun getProfile(userId: Long): Single<UserResponse> {
+        val profile = UserResponse(
             100200300,
-            "Alexey_Mock",
+            8800,
             "Tsykunov_Mock",
             "MyMockStatus",
             "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
             "21.05.1988_Mock",
-            "Томск_Mock",
+            21,
             "+79627777777"
         )
         return Single.just(profile)
 
     }
 }
+*/

@@ -67,14 +67,15 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
     override fun showProfile(data: ProfileData) {
         profileViewFirstName.text = data.firstName
         profileViewSurname.text = data.lastName
-        profileViewBirthday.text = data.birthday
-        profileViewCity.text = data.city
+    //    profileViewBirthday.text = data.birthday
+    //    profileViewCity.text = data.city
         profileAvatarView.loadImage(data.avatar)
     }
 
     override fun showFeed(items: List<BaseMessage>) {
         feedAdapter.setItems(items)
     }
+
 
     override fun showEmptyFeed() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
