@@ -12,6 +12,8 @@ import ru.asshands.softwire.tsykunovvkappclient.data.repository.PostRepositoryIm
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.ProfileRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.SessionRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.UserRepositoryImpl
+import ru.asshands.softwire.tsykunovvkappclient.data.storage.StorageInflate
+import ru.asshands.softwire.tsykunovvkappclient.data.storage.StorageInflateImpl
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
@@ -73,4 +75,8 @@ abstract class DataModule {
     @Singleton
     @Binds
     abstract fun bindUserRepositoryImpl(instance: UserRepositoryImpl): UserRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindStorageInflate(instance: StorageInflateImpl): StorageInflate
 }

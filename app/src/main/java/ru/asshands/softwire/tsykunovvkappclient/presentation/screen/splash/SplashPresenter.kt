@@ -2,10 +2,14 @@ package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash
 
 import android.os.Handler
 import com.arellomobile.mvp.InjectViewState
+import io.reactivex.android.schedulers.AndroidSchedulers
+import ru.asshands.softwire.tsykunovvkappclient.data.storage.StorageInflate
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -13,10 +17,13 @@ import javax.inject.Inject
 
 class SplashPresenter @Inject constructor(
     private val sessionRepository: SessionRepository,
+    private val storageInflate: StorageInflate,
     private val router: Router) : BasePresenter<SplashView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+
+        storageInflate.addMainUser()
 
         Handler().postDelayed({
             router.newRootScreen(
