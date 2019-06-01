@@ -26,5 +26,8 @@ class SessionDataSourceImpl @Inject constructor(
         .remove(KEY_TOKEN)
         .apply()
 
-    override fun getToken(): String = sharedPreferences.getString(KEY_TOKEN, "").orEmpty()
+    override fun getToken(): String {
+        val resultString =  sharedPreferences.getString(KEY_TOKEN, "").orEmpty()
+        return resultString
+    }
 }

@@ -6,6 +6,7 @@ import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.UserConverter
+import ru.asshands.softwire.tsykunovvkappclient.data.datasource.SessionDataSource
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
@@ -22,6 +23,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class ProfileViewPresenter @Inject constructor(
+    private val sessionDataSource: SessionDataSource,
     private val profileConverter: Converter<User, ProfileData>,
     private val postRepository: PostRepository,
     private val profileRepository: ProfileRepository,
@@ -102,11 +104,10 @@ class ProfileViewPresenter @Inject constructor(
     }
 
     fun logout() {
-        //TODO("Сообщаем серверу что работа с аккаунтом завершена")
+        sessionDataSource.clearToken()
         router.replaceScreen(Screen.LoginScreen())
     }
     fun goToEditProfile() {
-        //TODO("Сообщаем серверу что работа с аккаунтом завершена")
         router.navigateTo(Screen.ProfileEditScreen())
     }
 

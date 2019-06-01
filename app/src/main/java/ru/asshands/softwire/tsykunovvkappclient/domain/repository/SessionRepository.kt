@@ -5,7 +5,7 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 
 interface SessionRepository {
 
-    fun login(name: String, password: String): Single<String>
+    fun login(name: String, password: String): Single<User>
 
     fun logout()
 

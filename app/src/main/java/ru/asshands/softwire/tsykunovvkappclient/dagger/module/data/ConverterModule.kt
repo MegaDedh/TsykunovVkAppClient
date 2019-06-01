@@ -2,10 +2,8 @@ package ru.asshands.softwire.tsykunovvkappclient.dagger.module.data
 
 import dagger.Binds
 import dagger.Module
-import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
-import ru.asshands.softwire.tsykunovvkappclient.data.converter.PostsConverter
-import ru.asshands.softwire.tsykunovvkappclient.data.converter.ProfileConverter
-import ru.asshands.softwire.tsykunovvkappclient.data.converter.UserConverter
+import ru.asshands.softwire.tsykunovvkappclient.data.converter.*
+import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.UserEntity
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
@@ -19,6 +17,10 @@ interface ConverterModule {
     @Singleton
     @Binds
     fun bindUserConverter(instance: UserConverter): Converter<UserResponse, User>
+
+    @Singleton
+    @Binds
+    fun bindUserEntityConverter(instance: UserEntityConverter): Converter<UserEntity, User>
 
     @Singleton
     @Binds

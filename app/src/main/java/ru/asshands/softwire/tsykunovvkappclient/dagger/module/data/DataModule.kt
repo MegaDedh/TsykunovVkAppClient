@@ -11,15 +11,18 @@ import ru.asshands.softwire.tsykunovvkappclient.data.datasource.*
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.PostRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.ProfileRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.data.repository.SessionRepositoryImpl
+import ru.asshands.softwire.tsykunovvkappclient.data.repository.UserRepositoryImpl
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
+import ru.asshands.softwire.tsykunovvkappclient.domain.repository.UserRepository
 import javax.inject.Singleton
 
 @Module(
     includes = [
     NetworkModule::class,
-    ConverterModule::class
+    ConverterModule::class,
+    DatabaseModule::class
 ]
 )
 
@@ -59,4 +62,15 @@ abstract class DataModule {
     @Binds
     abstract fun bindProfileRepository(instance: ProfileRepositoryImpl): ProfileRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindDbAuthDataSource(instance: DbAuthDataSourceImpl): DbAuthDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindUserDataSource(instance: UserDataSourceImpl): UserDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindUserRepositoryImpl(instance: UserRepositoryImpl): UserRepository
 }
