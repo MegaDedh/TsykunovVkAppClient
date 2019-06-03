@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post_message.view.*
 import ru.asshands.softwire.tsykunovvkappclient.R
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.inflate
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
 import timber.log.Timber
 import java.lang.IllegalArgumentException
@@ -23,17 +24,12 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
         POST_MESSAGE -> {
             Timber.d("OnCreateViewHolder PostMessage")
-            PostMessageHolder.createInstance(parent)
+            PostMessageHolder(parent.inflate(R.layout.item_post_message))
             }
 
         CAT_MESSAGE -> {
                Timber.d("OnCreateViewHolder CATMessage")
-            CatMessageHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_cat_message,
-                    parent,
-                    false
-                )
+            CatMessageHolder((parent.inflate(R.layout.item_cat_message))
             )
         }
 

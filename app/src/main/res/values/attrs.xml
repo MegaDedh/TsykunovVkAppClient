@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AvatarPickerView">
+        <attr name="apv_image" format="reference"/>
+        <attr name="apv_icon" format="reference"/>
+        <attr name="apv_icon_background" format="color"/>
+    </declare-styleable>
+
+</resources>
