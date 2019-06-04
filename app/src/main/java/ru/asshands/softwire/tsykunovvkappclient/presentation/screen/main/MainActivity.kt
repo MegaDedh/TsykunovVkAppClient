@@ -11,12 +11,22 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.activity_main.*
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BottomNavigationController
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 
-class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainView {
+class MainActivity :
+    MvpAppCompatActivity(),
+    HasSupportFragmentInjector,
+    MainView,
+    BottomNavigationController{
+
+    companion object {
+        const val ARG_IS_SHOW_NAVIGATION = "ARG_IS_SHOW_NAVIGATION"
+    }
 
     @Inject
     @InjectPresenter
@@ -30,6 +40,8 @@ class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainVie
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjectorImpl
 
+    private var isShowNavigation: Boolean = false
+
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
@@ -41,6 +53,15 @@ class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainVie
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        savedInstanceState?.let {
+            isShowNavigation = it.getBoolean(ARG_IS_SHOW_NAVIGATION)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(ARG_IS_SHOW_NAVIGATION, isShowNavigation)
     }
 
     override fun onResume() {
@@ -51,5 +72,31 @@ class MainActivity : MvpAppCompatActivity(), HasSupportFragmentInjector, MainVie
     override fun onPause() {
         super.onPause()
         navigatorHolder.removeNavigator()
+    }
+
+    override fun showNavigation() {
+        if (isShowNavigation.not()) {
+            bottomNavigation.animate().apply {
+                duration = 150
+
+                translationY(-bottomNavigation.height.toFloat())
+                start()
+            }
+
+            isShowNavigation = true
+        }
+    }
+
+    override fun hideNavigation() {
+        if (isShowNavigation) {
+            bottomNavigation.animate().apply {
+                duration = 150
+
+                translationY(bottomNavigation.height.toFloat())
+                start()
+            }
+
+            isShowNavigation = false
+        }
     }
 }

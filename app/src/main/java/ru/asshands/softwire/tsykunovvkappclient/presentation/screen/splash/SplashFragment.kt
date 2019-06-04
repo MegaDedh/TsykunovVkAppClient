@@ -6,7 +6,7 @@ import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import javax.inject.Inject
 
-class SplashFragment : BaseFragment(R.layout.frament_splash), SplashView {
+class SplashFragment : BaseFragment(R.layout.frament_splash, false), SplashView {
 
     @Inject
     @InjectPresenter

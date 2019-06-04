@@ -11,7 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
 import javax.inject.Inject
 
-class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
+class LoginFragment : BaseFragment(R.layout.fragment_login, false),LoginView {
 
     @Inject
     @InjectPresenter
