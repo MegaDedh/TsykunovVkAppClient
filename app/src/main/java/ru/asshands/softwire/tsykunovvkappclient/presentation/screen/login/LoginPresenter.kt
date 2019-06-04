@@ -53,6 +53,10 @@ import javax.inject.Inject
             .untilDestroy()
     }
 
+    fun goToCustomView(){
+        router.replaceScreen(Screen.CustomScreen())
+    }
+
     fun login_old(login: String, password: String) {
         // TODO отправляем запрос на сервер, он должен вернуть profileID
         if (login == "test" && password == "123"){

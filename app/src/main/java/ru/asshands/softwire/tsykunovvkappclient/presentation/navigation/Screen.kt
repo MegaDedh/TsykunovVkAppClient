@@ -1,6 +1,7 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.navigation
 
 import androidx.fragment.app.Fragment
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.custom.CustomFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash.SplashFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.ProfileViewFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.edit.ProfileEditFragment
@@ -12,6 +13,7 @@ sealed class Screen(fragment: Fragment) : BaseScreen(fragment) {
     class ProfileViewScreen : Screen(ProfileViewFragment.createInstance())
     class ProfileEditScreen : Screen(ProfileEditFragment())
     class LoginScreen : Screen(LoginFragment())
+    class CustomScreen : Screen(CustomFragment())
 }
 
 open class BaseScreen(private val fragment: Fragment) : SupportAppScreen() {

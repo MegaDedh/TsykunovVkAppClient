@@ -60,7 +60,7 @@ object Dependecies {
     val retrofit2AdapterRxJava = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit2}"
 
     val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    val jUnit = "unit:junit:${Versions.jUnit}"
+    val jUnit = "junit:junit:${Versions.jUnit}"
     val testRunner = "androidx.test:runner:${Versions.testRunner}"
     val testEspressoCore = "androidx.test.espresso:espresso-core:${Versions.testEspressoCore}"
     }

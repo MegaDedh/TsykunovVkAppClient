@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import androidx.appcompat.app.AlertDialog
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
-import timber.log.Timber
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
@@ -22,16 +21,16 @@ class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
     @ProvidePresenter
     fun providePresenter(): LoginPresenter = presenter
 
-    /*   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initLoginButton()
         initForgetPasswordButton()
+        initCustomViewButton()
     }
 
     private fun initLoginButton() {
         login_enter_btn.setOnClickListener {
             presenter.login(login_account.text.toString(), login_password.text.toString())
-
         }
     }
 
@@ -40,7 +39,13 @@ class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
             presenter.onClickForgotPasswordBtn(it.context)
         }
     }
-    }*/
+
+    private fun initCustomViewButton() {
+        login_custom_view_btn.setOnClickListener {
+            presenter.goToCustomView()
+        }
+    }
+
     override fun accessDenied() {
         context?.let { Toast.makeText(it, "В доступе отказано", Toast.LENGTH_SHORT).show() }
     }
@@ -55,21 +60,4 @@ class LoginFragment : BaseFragment(R.layout.fragment_login),LoginView {
                 .show()
         }
     }
-
-
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-
-            loginAvatarPicker1.setOnIconClickListener {
-                Timber.d("loginAvatarPicker1")
-            }
-
-            loginAvatarPicker2.setOnIconClickListener {
-                Timber.d("loginAvatarPicker2")
-            }
-
-            loginAvatarPicker3.setOnIconClickListener {
-                Timber.d("loginAvatarPicker3")
-            }
-        }
-    }
+}
