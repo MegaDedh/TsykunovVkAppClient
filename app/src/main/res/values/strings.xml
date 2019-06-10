@@ -17,8 +17,8 @@
     <string name="city">Город:</string>
     <string name="edit_profile_success">Данные профиля успешно обновлены</string>
     <string name="edit_profile_failure">Не удалось обновить данные профиля</string>
-    <string name="profile">Profile</string>
-    <string name="messages">Messages</string>
-    <string name="news">News</string>
+    <string name="profile">Профиль</string>
+    <string name="messages">Сообщения</string>
+    <string name="news">Новости</string>
 
 </resources>

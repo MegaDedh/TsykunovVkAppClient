@@ -6,12 +6,16 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash.Splas
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.ProfileViewFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.edit.ProfileEditFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginFragment
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.messages.MessagesFragment
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.news.NewsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 sealed class Screen(fragment: Fragment) : BaseScreen(fragment) {
     class SplashScreen : Screen(SplashFragment())
     class ProfileViewScreen : Screen(ProfileViewFragment.createInstance())
     class ProfileEditScreen : Screen(ProfileEditFragment())
+    class MessagesScreen : Screen(MessagesFragment())
+    class NewsScreen : Screen(NewsFragment())
     class LoginScreen : Screen(LoginFragment())
     class CustomScreen : Screen(CustomFragment())
 }

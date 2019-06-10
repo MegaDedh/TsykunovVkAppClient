@@ -1,6 +1,7 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.main
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -57,6 +58,7 @@ class MainActivity :
         savedInstanceState?.let {
             isShowNavigation = it.getBoolean(ARG_IS_SHOW_NAVIGATION)
         }
+        initBottomNavigation()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,7 +84,6 @@ class MainActivity :
                 translationY(-bottomNavigation.height.toFloat())
                 start()
             }
-
             isShowNavigation = true
         }
     }
@@ -95,8 +96,24 @@ class MainActivity :
                 translationY(bottomNavigation.height.toFloat())
                 start()
             }
-
             isShowNavigation = false
+        }
+    }
+
+    private fun initBottomNavigation() {
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_profile -> {
+                    presenter.goToProfileView()
+                }
+                R.id.action_messages -> {
+                    presenter.goToMessages()
+                }
+                R.id.action_news -> {
+                    presenter.goToNews()
+                }
+            }
+            true
         }
     }
 }

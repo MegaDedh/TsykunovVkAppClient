@@ -13,4 +13,16 @@ class MainPresenter @Inject constructor (private val router: Router) : BasePrese
         super.onFirstViewAttach()
         router.newRootScreen(Screen.SplashScreen())
     }
+
+    fun goToProfileView(){
+        router.navigateTo(Screen.ProfileViewScreen())
+    }
+
+    fun goToMessages(){
+        router.navigateTo(Screen.MessagesScreen())
+    }
+
+    fun goToNews(){
+        router.navigateTo(Screen.NewsScreen())
+    }
 }

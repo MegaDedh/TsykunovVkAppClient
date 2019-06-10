@@ -89,6 +89,7 @@ class ProfileViewPresenter @Inject constructor(
                 }
             )
             .untilDestroy()
+
     }
 
     fun loadPosts() {
