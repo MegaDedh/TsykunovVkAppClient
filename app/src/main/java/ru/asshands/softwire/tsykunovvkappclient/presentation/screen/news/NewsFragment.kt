@@ -1,5 +1,7 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.news
 
+import android.os.Bundle
+import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
@@ -15,4 +17,8 @@ class NewsFragment: BaseFragment(R.layout.fragment_news, true), NewsView{
     @ProvidePresenter
     fun providePresenter(): NewsPresenter = presenter
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.getProfile(100200300)
+    }
 }

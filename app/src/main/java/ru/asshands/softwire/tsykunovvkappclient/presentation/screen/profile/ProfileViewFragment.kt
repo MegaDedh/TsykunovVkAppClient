@@ -67,7 +67,7 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
     override fun showProfile(data: ProfileData) {
         profileViewFirstName.text = data.firstName
         profileViewSurname.text = data.lastName
-        profileViewBirthday.text = data.birthday.toString()
+        profileViewBirthday.text = data.birthday
         profileViewCity.text = data.city
         profileAvatarView.loadImage(data.avatar)
     }

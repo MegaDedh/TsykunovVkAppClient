@@ -13,4 +13,8 @@ class UserRepositoryImpl @Inject constructor(private val userDataSource: UserDat
         .create(user, password)
         .subscribeOn(Schedulers.io())
 
+    override fun update(user: User, password: String): Single<Int> = userDataSource
+        .update(user, password)
+        .subscribeOn(Schedulers.io())
+
 }

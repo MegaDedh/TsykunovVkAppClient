@@ -68,20 +68,18 @@ class ProfileViewPresenter @Inject constructor(
         }
     )
 
-
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         paginator.refresh()
-        getProfileData()
-   //     getFeedData()
+        getProfileData(100200300)
     }
 
-    private fun getProfileData() {
-        //    viewState.showProfile(profileRepository.getProfile())
-        profileRepository.getProfile()
+    private fun getProfileData(id: Long) {
+        profileRepository.getProfileDb(id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    //Timber.d(it.toString())
                     viewState.showProfile(profileConverter.convert(it))
                 },
                 {
@@ -89,7 +87,6 @@ class ProfileViewPresenter @Inject constructor(
                 }
             )
             .untilDestroy()
-
     }
 
     fun loadPosts() {
@@ -99,10 +96,6 @@ class ProfileViewPresenter @Inject constructor(
     fun refreshPosts() {
         paginator.refresh()
     }
-
- //   private fun getFeedData() {
-        //viewState.showFeed(postRepository.getAll())
-  //  }
 
     fun logout() {
         sessionDataSource.clearToken()

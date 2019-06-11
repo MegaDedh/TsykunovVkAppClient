@@ -9,6 +9,7 @@ import javax.inject.Inject
 interface UserDataSource {
 
     fun create(user: User, password: String): Single<Long>
+    fun update(user: User, password: String): Single<Int>
 }
 
 class UserDataSourceImpl @Inject constructor(private val userDao: UserDao) : UserDataSource {
@@ -28,4 +29,18 @@ class UserDataSourceImpl @Inject constructor(private val userDao: UserDao) : Use
         )
     }
 
+    override fun update(user: User, password: String): Single<Int> = Single.fromCallable {
+        userDao.update(
+            UserEntity(
+                user.id,
+                user.phone,
+                password,
+                user.firstName,
+                user.lastName,
+                user.birthday,
+                user.city,
+                user.avatar
+            )
+        )
+    }
 }

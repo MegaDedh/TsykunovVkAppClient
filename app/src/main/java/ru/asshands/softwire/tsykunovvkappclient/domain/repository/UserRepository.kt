@@ -6,4 +6,5 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 interface UserRepository {
 
     fun create(user: User, password: String): Single<Long>
+    fun update(user: User, password: String): Single<Int>
 }

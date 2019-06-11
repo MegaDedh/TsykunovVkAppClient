@@ -29,13 +29,14 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
 
     override fun onStart() {
         super.onStart()
-        presenter.getProfile()
+        presenter.getProfileData(100200300)
     }
 
     private fun initSaveChangesButton() {
         profile_edit_save_btn.setOnClickListener {
             disableUI()
             presenter.saveChanges(
+                100200300,
                 profileEditFirstNameField.text.toString(),
                 profileEditSurnameField.text.toString(),
                 profileEditBirthdayField.text.toString(),
@@ -74,8 +75,8 @@ class ProfileEditFragment : BaseFragment(R.layout.fragment_profile_edit),
     override fun showEditProfile(data: ProfileData) {
         profileEditFirstNameField.setText(data.firstName)
         profileEditSurnameField.setText(data.lastName)
-     //   profileEditBirthdayField.setText(data.birthday)
-     //   profileEditCityField.setText(data.city)
+        profileEditBirthdayField.setText(data.birthday)
+        profileEditCityField.setText(data.city)
     }
 
     override fun profileUpdated() {

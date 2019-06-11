@@ -25,11 +25,11 @@ class StorageInflateImpl @Inject constructor(
             User(
                 id = 100200300,
                 phone = "555",
-                firstName = "dbUserName",
-                lastName = "dbUserLastName",
+                firstName = "AlexeyDB",
+                lastName = "TsykunovDB",
                 birthday = "21.05.1988",
-                city = "dbCity",
-                avatar = "avatark.jpg"
+                city = "TomskDB",
+                avatar = "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg"
             ), "root"
         )
             .observeOn(AndroidSchedulers.mainThread())

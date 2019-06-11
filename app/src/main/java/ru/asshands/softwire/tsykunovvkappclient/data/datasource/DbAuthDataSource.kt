@@ -22,5 +22,4 @@ class DbAuthDataSourceImpl @Inject constructor(private val userDao: UserDao) : D
                     Maybe.error(RuntimeException("Неверный логин или пароль"))
                 }
             }.toSingle()
-
 }

@@ -7,5 +7,6 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 interface ProfileRepository {
 
     fun getProfile(): Single<User>
+    fun getProfileDb(id: Long): Single<User>
 
 }

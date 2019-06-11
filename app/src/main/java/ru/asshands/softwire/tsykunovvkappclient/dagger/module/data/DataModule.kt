@@ -70,6 +70,10 @@ abstract class DataModule {
 
     @Singleton
     @Binds
+    abstract fun DbProfileDataSource(instance: DbProfileDataSourceImpl): DbProfileDataSource
+
+    @Singleton
+    @Binds
     abstract fun bindUserDataSource(instance: UserDataSourceImpl): UserDataSource
 
     @Singleton
