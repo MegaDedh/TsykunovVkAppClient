@@ -6,6 +6,8 @@ import io.reactivex.disposables.Disposable
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.UserRepository
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 interface StorageInflate{
@@ -25,6 +27,8 @@ class StorageInflateImpl @Inject constructor(
                 phone = "555",
                 firstName = "dbUserName",
                 lastName = "dbUserLastName",
+                birthday = "21.05.1988",
+                city = "dbCity",
                 avatar = "avatark.jpg"
             ), "root"
         )

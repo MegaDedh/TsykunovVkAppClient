@@ -12,7 +12,8 @@ interface ProfileDataSource {
 
 }
 
-class ProfileDataSourceImpl @Inject constructor(private val api: Api) : ProfileDataSource {
+//class ProfileDataSourceImpl @Inject constructor(private val api: Api) : ProfileDataSource {
+class ProfileDataSourceImpl @Inject constructor(@MockQualifier private val api: Api) : ProfileDataSource {
 
     override fun getProfile(): Single<UserResponse> =
         api.getProfile(100200300)

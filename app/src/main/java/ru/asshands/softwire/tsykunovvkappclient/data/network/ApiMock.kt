@@ -11,8 +11,6 @@ import javax.inject.Inject
 
 class ApiMock @Inject constructor() : Api {
 
-    val format = SimpleDateFormat("dd.MM.yyyy")
-    val birthday: Date = format.parse("21.05.1988")
 
     override fun login(name: String, password: String): Single<UserResponse> =
         if (name == "root" && password == "root") {
@@ -23,7 +21,7 @@ class ApiMock @Inject constructor() : Api {
                 "MyStatus",
                 "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
                 "21.05.1988",
-                birthday,
+                "21.05.1988",
                 "+79627775069"
             )
             Single.just(profile)
@@ -46,7 +44,7 @@ class ApiMock @Inject constructor() : Api {
             "Tsykunov_Mock",
             "MyMockStatus",
             "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
-            birthday,
+            "21.05.1988",
             "Tomsk"
         )
         return Single.just(profile)

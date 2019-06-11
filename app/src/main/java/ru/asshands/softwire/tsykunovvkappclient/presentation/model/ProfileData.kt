@@ -8,5 +8,7 @@ data class ProfileData(
     val phone: String,
     val firstName: String,
     val lastName: String,
+    val birthday: String,
+    val city: String,
     val avatar: String
 )

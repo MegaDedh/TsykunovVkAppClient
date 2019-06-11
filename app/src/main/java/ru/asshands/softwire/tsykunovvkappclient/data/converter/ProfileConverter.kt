@@ -12,6 +12,8 @@ class ProfileConverter @Inject constructor() : Converter<User, ProfileData> {
             t.phone,
             t.firstName,
             t.lastName,
+            t.birthday,
+            t.city,
             t.avatar
         )
 }

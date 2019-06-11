@@ -11,6 +11,6 @@ class UserResponse(
     @SerializedName("lastName") val lastName: String,
     @SerializedName("status") val status: String,
     @SerializedName("avatar") val avatar: String,
-    @SerializedName("birthday") val birthday: Date,
+    @SerializedName("birthday") val birthday: String,
     @SerializedName("city") val city: String
 )
