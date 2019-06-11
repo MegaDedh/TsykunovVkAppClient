@@ -1,13 +1,18 @@
-/*
+
 package ru.asshands.softwire.tsykunovvkappclient.data.network
 
 import io.reactivex.Single
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ApiMock @Inject constructor() : Api {
+
+    val format = SimpleDateFormat("dd.MM.yyyy")
+    val birthday: Date = format.parse("21.05.1988")
 
     override fun login(name: String, password: String): Single<UserResponse> =
         if (name == "root" && password == "root") {
@@ -18,7 +23,7 @@ class ApiMock @Inject constructor() : Api {
                 "MyStatus",
                 "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
                 "21.05.1988",
-                "Томск",
+                birthday,
                 "+79627775069"
             )
             Single.just(profile)
@@ -36,16 +41,15 @@ class ApiMock @Inject constructor() : Api {
     override fun getProfile(userId: Long): Single<UserResponse> {
         val profile = UserResponse(
             100200300,
-            8800,
+            "+79627777777",
+            "Alexey_Mock",
             "Tsykunov_Mock",
             "MyMockStatus",
             "https://pp.userapi.com/c850016/v850016044/1a25fc/cHZ5EmlnW5o.jpg",
-            "21.05.1988_Mock",
-            21,
-            "+79627777777"
+            birthday,
+            "Tomsk"
         )
         return Single.just(profile)
 
     }
 }
-*/

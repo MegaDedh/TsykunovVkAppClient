@@ -11,13 +11,19 @@ import javax.inject.Inject
 
 interface AuthDataSource {
 
-    fun login(name: String, password: String): Single<LoginResponse>
+    fun login(name: String, password: String): Single<UserResponse>
 }
 
+class AuthDataSourceImpl @Inject constructor(@MockQualifier private val api: Api) : AuthDataSource {
+
+    override fun login(name: String, password: String): Single<UserResponse> = api.login(name, password)
+}
+
+/*
 class AuthDataSourceImpl @Inject constructor(private val api: Api) : AuthDataSource {
 
     override fun login(name: String, password: String): Single<LoginResponse> =
         api
             .login(UserRequest(name, password))
             .compose(BaseResponseTransformer())
-}
+}*/

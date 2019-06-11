@@ -9,17 +9,20 @@ import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
-    private val api: Api,
+    @MockQualifier private val api: Api,
+  //  private val api: Api,
     private val postsConverter: Converter<List<PostResponse>, List<Post>>
 ) : PostRepository {
 
     override fun getPosts(page: Int): Single<List<Post>> = api.getPosts(page)
         .subscribeOn(Schedulers.io())
-        .compose(BaseResponseTransformer())
+  //      .compose(BaseResponseTransformer())
         .map(postsConverter::convert)
+
 
     override fun getPost(id: Long): Post {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

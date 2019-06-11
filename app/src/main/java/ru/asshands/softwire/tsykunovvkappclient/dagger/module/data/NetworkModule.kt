@@ -15,6 +15,7 @@ import ru.asshands.softwire.tsykunovvkappclient.dagger.MockQualifier
 import ru.asshands.softwire.tsykunovvkappclient.data.interceptor.MockInterceptor
 import ru.asshands.softwire.tsykunovvkappclient.data.interceptor.TokenInterceptor
 import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
+import ru.asshands.softwire.tsykunovvkappclient.data.network.ApiMock
 import timber.log.Timber
 import javax.inject.Singleton
 
@@ -59,4 +60,9 @@ abstract class NetworkModule {
         @Provides
         fun provideApi(retrofit: Retrofit) = retrofit.create(Api::class.java)
     }
+
+    @Singleton
+    @Binds
+    @MockQualifier
+    abstract fun bindMockApi(instance: ApiMock): Api
 }

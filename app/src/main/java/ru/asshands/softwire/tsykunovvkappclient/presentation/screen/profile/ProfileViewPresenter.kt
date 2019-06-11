@@ -73,7 +73,7 @@ class ProfileViewPresenter @Inject constructor(
         super.onFirstViewAttach()
         paginator.refresh()
         getProfileData()
-        getFeedData()
+   //     getFeedData()
     }
 
     private fun getProfileData() {
@@ -100,9 +100,9 @@ class ProfileViewPresenter @Inject constructor(
         paginator.refresh()
     }
 
-    private fun getFeedData() {
+ //   private fun getFeedData() {
         //viewState.showFeed(postRepository.getAll())
-    }
+  //  }
 
     fun logout() {
         sessionDataSource.clearToken()
