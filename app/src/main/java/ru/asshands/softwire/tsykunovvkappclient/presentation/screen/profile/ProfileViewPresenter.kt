@@ -1,11 +1,8 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
-import ru.asshands.softwire.tsykunovvkappclient.data.converter.UserConverter
 import ru.asshands.softwire.tsykunovvkappclient.data.datasource.SessionDataSource
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
@@ -15,8 +12,7 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresente
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.Paginator
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.CatMessage
-import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.PostMessage
+import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.PostMessage
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 import javax.inject.Inject
@@ -50,8 +46,20 @@ class ProfileViewPresenter @Inject constructor(
             }
 
             override fun showData(show: Boolean, data: List<Post>) {
-                viewState.showFeed(data.map { PostMessage(it.id, "Number ${it.id}",
-                    "https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681") })
+                viewState.showFeed(data.map {
+                    PostMessage(
+                        it.id, "Number ${it.id}",
+                        "https://loremflickr.com/300/200/nature?random=$it.id"
+                    )
+                })
+
+/*                PostMessage(
+                    it.id, "Number ${it.id}",
+                    "https://loremflickr.com/300/200/nature?random=$it.id"
+                )*/
+
+                //"https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681") })
+                //"https://loremflickr.com/300/200/nature?random=$it.id"
             }
 
             override fun showErrorMessage(error: Throwable) {

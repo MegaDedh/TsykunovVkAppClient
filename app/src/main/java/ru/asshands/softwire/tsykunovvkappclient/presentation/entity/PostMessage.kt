@@ -1,4 +1,4 @@
-package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed
+package ru.asshands.softwire.tsykunovvkappclient.presentation.entity
 
 class PostMessage(
     id: Long,
