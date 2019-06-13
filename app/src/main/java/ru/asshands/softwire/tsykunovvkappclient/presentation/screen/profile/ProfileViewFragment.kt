@@ -8,8 +8,11 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.asshands.softwire.tsykunovvkappclient.R
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile_view.*
+import kotlinx.android.synthetic.main.item_profile_message.*
+import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.BaseMessage
+import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.ProfileMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.feed.FeedAdapter
 import javax.inject.Inject
 
@@ -62,12 +65,13 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
     }
 
   //  override fun showProfile(firstName: String, surname: String, birthday: String, city: String) {
-    override fun showProfile(data: ProfileData) {
-        profileViewFirstName.text = data.firstName
-        profileViewSurname.text = data.lastName
-        profileViewBirthday.text = data.birthday
-        profileViewCity.text = data.city
-        profileAvatarView.loadImage(data.avatar)
+    override fun showProfile(data: ProfileMessage) {
+      feedAdapter.setProfile(data)
+ //       profileViewFirstName.text = data.firstName
+ //       profileViewSurname.text = data.lastName
+ //       profileViewBirthday.text = data.birthday
+ //       profileViewCity.text = data.city
+ //       profileAvatarView.loadImage(data.avatar)
     }
 
     override fun showFeed(items: List<BaseMessage>) {

@@ -10,9 +10,13 @@ import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.BasePresenter
 import ru.asshands.softwire.tsykunovvkappclient.presentation.common.Paginator
+import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.PostMessage
+import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.ProfileMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import ru.asshands.softwire.tsykunovvkappclient.presentation.navigation.Screen
-import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.PostMessage
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.converter.PresentationConverter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.converter.PresentationPostConverter
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.converter.PresentationProfileConverter
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 import javax.inject.Inject
@@ -20,6 +24,12 @@ import javax.inject.Inject
 @InjectViewState
 class ProfileViewPresenter @Inject constructor(
     private val sessionDataSource: SessionDataSource,
+  //  private val presentationPostConverter: PresentationPostConverter,
+  //  private val presentationProfileConverter: PresentationProfileConverter,
+
+    private val presentationPostConverter: PresentationConverter<Post, PostMessage>,
+    private val presentationProfileConverter: PresentationConverter<User, ProfileMessage>,
+
     private val profileConverter: Converter<User, ProfileData>,
     private val postRepository: PostRepository,
     private val profileRepository: ProfileRepository,
@@ -45,13 +55,20 @@ class ProfileViewPresenter @Inject constructor(
                 viewState.showEmptyFeed()
             }
 
+
             override fun showData(show: Boolean, data: List<Post>) {
+                viewState.showFeed(data.map {presentationPostConverter.convert(it)})
+
+
+/*            override fun showData(show: Boolean, data: List<Post>) {
                 viewState.showFeed(data.map {
                     PostMessage(
                         it.id, "Number ${it.id}",
-                        "https://loremflickr.com/300/200/nature?random=$it.id"
+                        "PIC",
+                        "https://loremflickr.com/300/200/nature?random=$it.id",
+                        10
                     )
-                })
+                })*/
 
 /*                PostMessage(
                     it.id, "Number ${it.id}",
@@ -88,7 +105,8 @@ class ProfileViewPresenter @Inject constructor(
             .subscribe(
                 {
                     //Timber.d(it.toString())
-                    viewState.showProfile(profileConverter.convert(it))
+                   // viewState.showProfile(profileConverter.convert(it))
+                    viewState.showProfile(presentationProfileConverter.convert(it))
                 },
                 {
                     Timber.e(it.message.orEmpty())

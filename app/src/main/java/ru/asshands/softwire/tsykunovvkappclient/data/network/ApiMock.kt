@@ -33,7 +33,13 @@ class ApiMock @Inject constructor() : Api {
 
 
     override fun getPosts(page: Int): Single<List<PostResponse>> =
-        Single.just(((20 * page - 20 + 1)..(page * 20)).map { PostResponse(it.toLong()) })
+        Single.just(((20 * page - 20 + 1)..(page * 20)).map {
+            PostResponse(it.toLong(),
+                "Message {$it}",
+                "PHOTO",
+                "https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681",
+                (0..100).random()
+                ) })
             .delay(2, TimeUnit.SECONDS)
 
     override fun getProfile(userId: Long): Single<UserResponse> {

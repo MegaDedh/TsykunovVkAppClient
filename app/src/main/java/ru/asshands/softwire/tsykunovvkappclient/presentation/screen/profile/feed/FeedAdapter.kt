@@ -12,6 +12,7 @@ import ru.asshands.softwire.tsykunovvkappclient.presentation.common.loadImage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.BaseMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.PostMessage
 import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.ProfileMessage
+import ru.asshands.softwire.tsykunovvkappclient.presentation.model.ProfileData
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 
@@ -60,14 +61,24 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
 
     fun setItems(items: List<BaseMessage>) {
         this.items.clear()
+        this.items.add(items[0])
         this.items.addAll(items)
         notifyDataSetChanged()
+    }
+
+    fun setProfile(data: ProfileMessage) {
+        if (items.isEmpty()) {
+            items.add(data)
+        } else {
+            this.items[0] = data
+        }
+        notifyItemChanged(0)
     }
 
     class ProfileHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(data: ProfileMessage) {
             itemView.profileViewFirstName.text = data.firstName
-            (itemView as ImageView).loadImage(data.avatar)
+            itemView.profileAvatarView.loadImage(data.avatar)
         }
     }
 
@@ -75,8 +86,8 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
         fun bind(data: PostMessage) {
             itemView.itemPostMessage.text = data.message
 
-            if (data.image.isNotEmpty()) {
-                itemView.itemPostImage.loadImage(data.image)
+            if (data.contentUrl.isNotEmpty()) {
+                itemView.itemPostImage.loadImage(data.contentUrl)
             }
         }
     }

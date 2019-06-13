@@ -2,8 +2,9 @@ package ru.asshands.softwire.tsykunovvkappclient.presentation.screen.converter
 
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.presentation.entity.ProfileMessage
+import javax.inject.Inject
 
-class ProfileConverter: Converter <User, ProfileMessage> {
+class PresentationProfileConverter @Inject constructor() : PresentationConverter<User, ProfileMessage> {
     override fun convert(t: User): ProfileMessage =
         ProfileMessage(
         t.id,

@@ -7,6 +7,12 @@ import javax.inject.Inject
 class PostsConverter @Inject constructor() : Converter<@JvmSuppressWildcards List<@JvmSuppressWildcards PostResponse>, @JvmSuppressWildcards List<@JvmSuppressWildcards Post>> {
 
     override fun convert(t: List<PostResponse>): List<Post> = t.map {
-        Post(it.id)
+        Post(
+            it.id,
+            it.message,
+            it.contentType,
+            it.contentUrl,
+            it.likes
+        )
     }
 }
