@@ -24,6 +24,16 @@ class SplashPresenter @Inject constructor(
         super.onFirstViewAttach()
 
         storageInflate.addMainUser()
+//https://tinyjpg.com/images/social/website.jpg
+        for (i in 1L..100) {
+            storageInflate.addPost(
+                id = i,
+                message = "DBMessage $i",
+                contentUrl = "PIC",
+                contentType = "https://loremflickr.com/300/200/nature?random=$i.id"
+            )
+        }
+
 
         Handler().postDelayed({
             router.newRootScreen(

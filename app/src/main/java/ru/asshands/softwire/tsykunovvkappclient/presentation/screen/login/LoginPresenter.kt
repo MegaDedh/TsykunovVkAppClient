@@ -41,7 +41,7 @@ import javax.inject.Inject
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    Timber.d(it.toString())
+                    Timber.d("Room debug:$it")
                     sessionDataSource.saveToken(it.id.toString())
                     router.replaceScreen(Screen.ProfileViewScreen())
                 },
@@ -57,13 +57,4 @@ import javax.inject.Inject
         router.replaceScreen(Screen.CustomScreen())
     }
 
-    fun login_old(login: String, password: String) {
-        // TODO отправляем запрос на сервер, он должен вернуть profileID
-        if (login == "test" && password == "123"){
-            router.replaceScreen(Screen.LoginScreen())
-        }
-        else{
-            viewState.accessDenied()
-        }
-    }
 }

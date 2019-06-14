@@ -5,9 +5,13 @@ import io.reactivex.schedulers.Schedulers
 import ru.asshands.softwire.tsykunovvkappclient.dagger.MockQualifier
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.BaseResponseTransformer
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.Converter
+import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.PostEntity
+import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.UserEntity
+import ru.asshands.softwire.tsykunovvkappclient.data.datasource.DbPostsDataSource
 import ru.asshands.softwire.tsykunovvkappclient.data.network.Api
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.domain.entity.Post
+import ru.asshands.softwire.tsykunovvkappclient.domain.entity.User
 import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -15,14 +19,22 @@ import javax.inject.Inject
 class PostRepositoryImpl @Inject constructor(
     @MockQualifier private val api: Api,
   //  private val api: Api,
-    private val postsConverter: Converter<List<PostResponse>, List<Post>>
+    private val dbPostsDataSource: DbPostsDataSource,
+    private val postsConverter: Converter<List<PostResponse>, List<Post>>,
+    private val postEntityConverter: Converter<PostEntity, Post>
+
 ) : PostRepository {
+
+    override fun getPostDb(id: Long): Single<Post> = dbPostsDataSource
+        .get(id)
+        .subscribeOn(Schedulers.io())
+        .map(postEntityConverter::convert)
+
 
     override fun getPosts(page: Int): Single<List<Post>> = api.getPosts(page)
         .subscribeOn(Schedulers.io())
   //      .compose(BaseResponseTransformer())
         .map(postsConverter::convert)
-
 
     override fun getPost(id: Long): Post {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

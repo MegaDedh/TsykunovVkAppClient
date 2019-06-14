@@ -3,6 +3,7 @@ package ru.asshands.softwire.tsykunovvkappclient.dagger.module.data
 import dagger.Binds
 import dagger.Module
 import ru.asshands.softwire.tsykunovvkappclient.data.converter.*
+import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.PostEntity
 import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.UserEntity
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.PostResponse
 import ru.asshands.softwire.tsykunovvkappclient.data.network.response.UserResponse
@@ -33,6 +34,11 @@ interface ConverterModule {
     @Binds
     fun bindPostsConverter(instance: PostsConverter):
             Converter<List<PostResponse>, List<Post>>
+
+    @Singleton
+    @Binds
+    fun bindPostEntityConverter(instance: PostEntityConverter):
+            Converter<PostEntity, Post>
 
     @Singleton
     @Binds

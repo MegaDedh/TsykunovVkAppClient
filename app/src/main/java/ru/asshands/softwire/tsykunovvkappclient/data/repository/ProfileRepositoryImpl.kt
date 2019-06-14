@@ -25,9 +25,9 @@ class ProfileRepositoryImpl @Inject constructor(
         .map(userEntityConverter::convert)
 
 
-    override fun getProfile(): Single<User> =
-        profileDataSource.getProfile()
-            .subscribeOn(Schedulers.io())
-            .map(userConverter::convert)
+    override fun getProfile(): Single<User> = profileDataSource
+        .getProfile()
+        .subscribeOn(Schedulers.io())
+        .map(userConverter::convert)
 
 }

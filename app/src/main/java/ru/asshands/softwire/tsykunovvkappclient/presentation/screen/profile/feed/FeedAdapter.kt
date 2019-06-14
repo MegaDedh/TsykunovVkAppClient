@@ -23,6 +23,7 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
     }
 
     private val items: MutableList<BaseMessage> = mutableListOf()
+    private lateinit var profileItem: ProfileMessage
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = when (viewType) {
 
@@ -61,23 +62,21 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
 
     fun setItems(items: List<BaseMessage>) {
         this.items.clear()
-        this.items.add(items[0])
+        profileItem.let {this.items.add(profileItem)}
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
     fun setProfile(data: ProfileMessage) {
-        if (items.isEmpty()) {
-            items.add(data)
-        } else {
-            this.items[0] = data
-        }
-        notifyItemChanged(0)
+        profileItem = data
     }
 
     class ProfileHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(data: ProfileMessage) {
             itemView.profileViewFirstName.text = data.firstName
+            itemView.profileViewSurname.text = data.lastName
+            itemView.profileViewBirthday.text = data.birthday
+            itemView.profileViewCity.text = data.city
             itemView.profileAvatarView.loadImage(data.avatar)
         }
     }

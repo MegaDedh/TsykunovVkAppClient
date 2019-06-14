@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.data.database.AppDatabase
+import ru.asshands.softwire.tsykunovvkappclient.data.database.dao.PostDao
 import ru.asshands.softwire.tsykunovvkappclient.data.database.dao.UserDao
 import javax.inject.Singleton
 
@@ -17,4 +18,8 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideUserDao(db: AppDatabase): UserDao = db.getUserDao()
+
+    @Singleton
+    @Provides
+    fun providePostDao(db: AppDatabase): PostDao = db.getPostDao()
 }

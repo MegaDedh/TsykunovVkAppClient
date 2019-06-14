@@ -8,16 +8,10 @@ import dagger.Provides
 import dagger.Reusable
 import ru.asshands.softwire.tsykunovvkappclient.App
 import ru.asshands.softwire.tsykunovvkappclient.data.datasource.*
-import ru.asshands.softwire.tsykunovvkappclient.data.repository.PostRepositoryImpl
-import ru.asshands.softwire.tsykunovvkappclient.data.repository.ProfileRepositoryImpl
-import ru.asshands.softwire.tsykunovvkappclient.data.repository.SessionRepositoryImpl
-import ru.asshands.softwire.tsykunovvkappclient.data.repository.UserRepositoryImpl
+import ru.asshands.softwire.tsykunovvkappclient.data.repository.*
 import ru.asshands.softwire.tsykunovvkappclient.data.storage.StorageInflate
 import ru.asshands.softwire.tsykunovvkappclient.data.storage.StorageInflateImpl
-import ru.asshands.softwire.tsykunovvkappclient.domain.repository.PostRepository
-import ru.asshands.softwire.tsykunovvkappclient.domain.repository.ProfileRepository
-import ru.asshands.softwire.tsykunovvkappclient.domain.repository.SessionRepository
-import ru.asshands.softwire.tsykunovvkappclient.domain.repository.UserRepository
+import ru.asshands.softwire.tsykunovvkappclient.domain.repository.*
 import javax.inject.Singleton
 
 @Module(
@@ -70,7 +64,11 @@ abstract class DataModule {
 
     @Singleton
     @Binds
-    abstract fun DbProfileDataSource(instance: DbProfileDataSourceImpl): DbProfileDataSource
+    abstract fun bindDbProfileDataSource(instance: DbProfileDataSourceImpl): DbProfileDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindDbPostsDataSource(instance: DbPostsDataSourceImpl): DbPostsDataSource
 
     @Singleton
     @Binds
@@ -78,7 +76,15 @@ abstract class DataModule {
 
     @Singleton
     @Binds
+    abstract fun bindPostRoomDataSource(instance: PostRoomDataSourceImpl): PostRoomDataSource
+
+    @Singleton
+    @Binds
     abstract fun bindUserRepositoryImpl(instance: UserRepositoryImpl): UserRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindPostRoomRepository(instance: PostRoomRepositoryImpl): PostRoomRepository
 
     @Singleton
     @Binds

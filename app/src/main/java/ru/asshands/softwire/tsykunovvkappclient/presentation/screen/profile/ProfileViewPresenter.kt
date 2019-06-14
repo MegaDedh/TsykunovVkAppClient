@@ -24,15 +24,12 @@ import javax.inject.Inject
 @InjectViewState
 class ProfileViewPresenter @Inject constructor(
     private val sessionDataSource: SessionDataSource,
-  //  private val presentationPostConverter: PresentationPostConverter,
-  //  private val presentationProfileConverter: PresentationProfileConverter,
-
     private val presentationPostConverter: PresentationConverter<Post, PostMessage>,
     private val presentationProfileConverter: PresentationConverter<User, ProfileMessage>,
-
     private val profileConverter: Converter<User, ProfileData>,
     private val postRepository: PostRepository,
     private val profileRepository: ProfileRepository,
+
     private val router: Router) : BasePresenter<ProfileView>() {
 
     private val paginator = Paginator(
@@ -97,6 +94,23 @@ class ProfileViewPresenter @Inject constructor(
         super.onFirstViewAttach()
         paginator.refresh()
         getProfileData(100200300)
+        getPostData(1)
+    }
+
+    private fun getPostData(id: Long) {
+        postRepository.getPostDb(id)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    Timber.d("Room debug:$it")
+                    // viewState.showProfile(profileConverter.convert(it))
+                    //viewState.showProfile(presentationProfileConverter.convert(it))
+                },
+                {
+                    Timber.e(it.message.orEmpty())
+                }
+            )
+            .untilDestroy()
     }
 
     private fun getProfileData(id: Long) {

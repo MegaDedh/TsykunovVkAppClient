@@ -2,7 +2,6 @@ package ru.asshands.softwire.tsykunovvkappclient.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import java.util.*
 
 @Entity(tableName = "users", primaryKeys = ["id", "phone"])
 data class UserEntity(
