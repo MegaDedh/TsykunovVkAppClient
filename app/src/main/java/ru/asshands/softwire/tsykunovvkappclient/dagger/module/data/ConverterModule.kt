@@ -42,6 +42,11 @@ interface ConverterModule {
 
     @Singleton
     @Binds
+    fun bindPostsEntityConverter(instance: PostsEntityConverter):
+            Converter<List<PostEntity>, List<Post>>
+
+    @Singleton
+    @Binds
     fun bindPresentationPostConverter(instance: PresentationPostConverter):
             PresentationConverter<Post, PostMessage>
 

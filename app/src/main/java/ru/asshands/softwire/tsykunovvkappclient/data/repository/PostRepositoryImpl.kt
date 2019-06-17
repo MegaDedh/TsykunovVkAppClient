@@ -21,7 +21,8 @@ class PostRepositoryImpl @Inject constructor(
   //  private val api: Api,
     private val dbPostsDataSource: DbPostsDataSource,
     private val postsConverter: Converter<List<PostResponse>, List<Post>>,
-    private val postEntityConverter: Converter<PostEntity, Post>
+    private val postEntityConverter: Converter<PostEntity, Post>,
+    private val postsEntityConverter: Converter<List<PostEntity>, List<Post>>
 
 ) : PostRepository {
 
@@ -29,6 +30,18 @@ class PostRepositoryImpl @Inject constructor(
         .get(id)
         .subscribeOn(Schedulers.io())
         .map(postEntityConverter::convert)
+
+    override fun getAllPostsDb(): Single<List<Post>> = dbPostsDataSource
+        .getAllPosts()
+        .subscribeOn(Schedulers.io())
+        .map(postsEntityConverter::convert)
+
+    override fun getPostsDb(page: Int): Single<List<Post>> = dbPostsDataSource
+        .getPosts(page)
+        .subscribeOn(Schedulers.io())
+        .map(postsEntityConverter::convert)
+        .delay(2, TimeUnit.SECONDS)
+
 
 
     override fun getPosts(page: Int): Single<List<Post>> = api.getPosts(page)

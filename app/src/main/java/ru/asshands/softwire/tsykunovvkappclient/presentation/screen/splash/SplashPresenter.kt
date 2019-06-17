@@ -29,8 +29,8 @@ class SplashPresenter @Inject constructor(
             storageInflate.addPost(
                 id = i,
                 message = "DBMessage $i",
-                contentUrl = "PIC",
-                contentType = "https://loremflickr.com/300/200/nature?random=$i.id"
+                contentType = "PIC",
+                contentUrl = "https://loremflickr.com/300/200/nature?random=$i.id"
             )
         }
 

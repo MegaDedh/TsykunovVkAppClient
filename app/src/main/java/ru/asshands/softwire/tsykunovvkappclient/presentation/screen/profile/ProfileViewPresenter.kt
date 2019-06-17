@@ -34,7 +34,8 @@ class ProfileViewPresenter @Inject constructor(
 
     private val paginator = Paginator(
         {
-            postRepository.getPosts(it)
+                postRepository.getPostsDb(it) // запрос из БД
+             //   postRepository.getPosts(it) // запрос из API
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideProgress() }
         },
@@ -94,7 +95,9 @@ class ProfileViewPresenter @Inject constructor(
         super.onFirstViewAttach()
         paginator.refresh()
         getProfileData(100200300)
-        getPostData(1)
+        for (id in 1L..100){
+        getPostData(id)
+        }
     }
 
     private fun getPostData(id: Long) {

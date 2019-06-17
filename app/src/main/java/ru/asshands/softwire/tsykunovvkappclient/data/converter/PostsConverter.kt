@@ -30,3 +30,19 @@ class PostEntityConverter @Inject constructor() : Converter<PostEntity, Post> {
         t.likes
     )
 }
+
+class PostsEntityConverter @Inject constructor() : Converter
+ <@JvmSuppressWildcards List<@JvmSuppressWildcards PostEntity>,
+ @JvmSuppressWildcards List<@JvmSuppressWildcards Post>> {
+//class PostsEntityConverter @Inject constructor() : Converter<List<PostEntity>, List<Post>> {
+
+    override fun convert(t: List<PostEntity>): List<Post> = t.map {
+        Post(
+            it.id,
+            it.message,
+            it.contentType,
+            it.contentUrl,
+            it.likes
+        )
+    }
+}

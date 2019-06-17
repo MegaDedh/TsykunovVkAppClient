@@ -7,11 +7,16 @@ import ru.asshands.softwire.tsykunovvkappclient.data.database.entity.PostEntity
 @Dao
 interface PostDao {
 
-    @Query("SELECT * FROM post WHERE id=:page")
-    fun getPosts(page: Int): Maybe<PostEntity>
+    //SELECT * FROM TABLE WHERE id = (SELECT MAX(id) FROM TABLE);
+
+    @Query("SELECT * FROM post WHERE id<=:page*20 AND id>:page*20-20")
+    fun getPosts(page: Int): Maybe<List<PostEntity>>
 
     @Query("SELECT * FROM post WHERE id=:id")
     fun get(id: Long): Maybe<PostEntity>
+
+    @Query("SELECT * FROM post")
+    fun getAllPosts(): Maybe<List<PostEntity>>
 
     @Insert
     fun insert(post: PostEntity): Long

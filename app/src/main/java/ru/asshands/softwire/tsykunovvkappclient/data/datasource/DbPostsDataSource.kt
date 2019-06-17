@@ -12,6 +12,8 @@ interface DbPostsDataSource{
 
  //   fun getPosts(page: Int): Single<List<PostEntity>>
     fun get(id: Long): Single<PostEntity>
+    fun getPosts(page: Int): Single<List<PostEntity>>
+    fun getAllPosts(): Single<List<PostEntity>>
 
 }
 
@@ -21,5 +23,20 @@ class DbPostsDataSourceImpl @Inject constructor(private val postDao: PostDao) : 
             .flatMap {
                 Maybe.just(it)
             }.toSingle()
+
+    override fun getPosts(page: Int): Single<List<PostEntity>>
+            =
+        postDao.getPosts(page)
+            .flatMap {
+                Maybe.just(it)
+            }.toSingle()
+
+    override fun getAllPosts(): Single<List<PostEntity>>
+            =
+        postDao.getAllPosts()
+            .flatMap {
+                Maybe.just(it)
+            }.toSingle()
+
 
 }
