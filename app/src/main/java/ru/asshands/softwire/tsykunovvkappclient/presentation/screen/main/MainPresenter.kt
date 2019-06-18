@@ -23,6 +23,6 @@ class MainPresenter @Inject constructor (private val router: Router) : BasePrese
     }
 
     fun goToNews(){
-        router.navigateTo(Screen.NewsScreen())
+        router.navigateTo(Screen.AddPostScreen())
     }
 }

@@ -3,6 +3,7 @@ package ru.asshands.softwire.tsykunovvkappclient.dagger.module.presentation
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.asshands.softwire.tsykunovvkappclient.dagger.FragmentScope
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.addpost.AddPostFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.custom.CustomFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.edit.ProfileEditFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.login.LoginFragment
@@ -37,6 +38,10 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     fun provideNewsFragment(): NewsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    fun provideAddPostFragment(): AddPostFragment
 
     @FragmentScope
     @ContributesAndroidInjector

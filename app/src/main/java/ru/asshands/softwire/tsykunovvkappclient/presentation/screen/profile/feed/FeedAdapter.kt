@@ -89,6 +89,8 @@ class FeedAdapter(private val onLoadPosts: () -> Unit) : RecyclerView.Adapter<Re
                 itemView.itemPostImage.loadImage(data.contentUrl)
             }
         }
+
+
     }
 
 }

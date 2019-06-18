@@ -148,6 +148,7 @@ class ProfileViewPresenter @Inject constructor(
         router.navigateTo(Screen.ProfileEditScreen())
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         paginator.release()

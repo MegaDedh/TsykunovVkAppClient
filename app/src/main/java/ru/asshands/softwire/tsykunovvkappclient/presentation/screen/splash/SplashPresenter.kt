@@ -30,7 +30,7 @@ class SplashPresenter @Inject constructor(
                 id = i,
                 message = "DBMessage $i",
                 contentType = "PIC",
-                contentUrl = "https://loremflickr.com/300/200/nature?random=$i.id"
+                contentUrl = "https://loremflickr.com/300/200/nature?random=$i"
             )
         }
 

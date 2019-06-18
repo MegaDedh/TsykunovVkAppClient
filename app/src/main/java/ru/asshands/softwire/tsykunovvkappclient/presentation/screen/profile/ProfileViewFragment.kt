@@ -40,6 +40,7 @@ class ProfileViewFragment: BaseFragment(R.layout.fragment_profile_view),
         initToolbar()
         initFeed()
 
+
         profileRefreshLayout.setOnRefreshListener(presenter::refreshPosts)
     }
 

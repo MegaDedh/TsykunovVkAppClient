@@ -17,8 +17,11 @@
     <string name="city">Город:</string>
     <string name="edit_profile_success">Данные профиля успешно обновлены</string>
     <string name="edit_profile_failure">Не удалось обновить данные профиля</string>
+    <string name="add_post_failure">Не удалось добавить запись</string>
     <string name="profile">Профиль</string>
     <string name="messages">Сообщения</string>
-    <string name="news">Новости</string>
+    <string name="news">Добавить</string>
+    <string name="add_post">Добавить запись...</string>
+    <string name="add">Добавить</string>
 
 </resources>

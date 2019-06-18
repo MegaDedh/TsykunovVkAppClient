@@ -1,6 +1,7 @@
 package ru.asshands.softwire.tsykunovvkappclient.presentation.navigation
 
 import androidx.fragment.app.Fragment
+import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.addpost.AddPostFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.custom.CustomFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.splash.SplashFragment
 import ru.asshands.softwire.tsykunovvkappclient.presentation.screen.profile.ProfileViewFragment
@@ -17,6 +18,7 @@ sealed class Screen(fragment: Fragment) : BaseScreen(fragment) {
     class MessagesScreen : Screen(MessagesFragment())
     class NewsScreen : Screen(NewsFragment())
     class LoginScreen : Screen(LoginFragment())
+    class AddPostScreen : Screen(AddPostFragment())
     class CustomScreen : Screen(CustomFragment())
 }
 
